@@ -1,0 +1,42 @@
+<nav id="header">
+    <a href="/">Home</a>
+    <a href="/login">Sign Up</a>
+    <a href="/login">Log In</a>
+    {{#if flag}}
+        <a href="/profile/{{username}}" id="profile">{{username}}</a>
+        <a href="/logout">Logout</a>
+    {{/if}}
+</nav>
+
+<!-- Navigation Bar-->
+<div class="container" id="navigation">
+
+  <a href="/logout"><div class="navbutton">
+		  <p><b>Logout</b></p>
+	</div></a>
+
+  <img src="/images/hiku-small.png" height=40px style=" margin-top: auto; margin-bottom: auto; margin-left: 10px">
+
+
+  <div id="hello_text">| Hello {{username}}!</div>
+
+
+  <a href="/home/{{username}}"><div class="navbutton">
+    <p><b>Home</b></p>
+  </div></a>
+  <a href="/forum/{{username}}"><div class="navbutton">
+    <p><b>Forums</b></p>
+  </div></a>
+  <a href="/explore/{{username}}"><div class="navbutton">
+    <p><b>Explore</b></p>
+  </div></a>
+  <a href="/battle/{{username}}"><div class="navbutton">
+    <p><b>Battle</b></p>
+  </div></a>
+  <a href="/trade/{{username}}"><div class="navbutton">
+    <p><b>Trade</b></p>
+  </div></a>
+  <a href="/account/{{username}}"><div class="navbutton">
+    <p><b>Account</b></p>
+  </div></a>
+</div>

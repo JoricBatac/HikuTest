@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Index</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/js/login.js"></script>
+  <script>
+        $(document).ready(function () {
+        /*
+            attach the event `keyup` to the html element where id = `idNum`
+            this html element is an `<input>` element
+            this event activates when the user releases a key on the keyboard
+        */
+        $('#username').keyup(function () {
+
+            // get the value entered the user in the `<input>` element
+
+              var username = $('#username').val();
+
+            /*
+                send an HTTP GET request using JQuery AJAX
+                the first parameter is the path in our server
+                which is defined in `../../routes/routes.js`
+                the server will execute the function getCheckID()
+                defined in `../../controllers/signupController.js`
+                the second parameter passes the variable `idNum`
+                as the value of the field `idNum`
+                to the server
+                the last parameter executes a callback function
+                when the server sent a response
+            */
+            $.get('/getCheckUsername', {username: username}, function (result) {
+                if(result.username == username) {
+                  $('#username').css('background-color', '#9CD9BF');
+                  $('#error').html('&nbsp');
+                  $('#submit').prop('disabled', false);
+                }
+
+                else {
+                  $('#username').css('background-color', '#FF6A55');
+                  $('#error').text('Invalid Username');
+                }
+            });
+        });
+        $('#usernamereg').keyup(function () {
+
+            // get the value entered the user in the `<input>` element
+
+              var username = $('#usernamereg').val();
+
+            /*
+                send an HTTP GET request using JQuery AJAX
+                the first parameter is the path in our server
+                which is defined in `../../routes/routes.js`
+                the server will execute the function getCheckID()
+                defined in `../../controllers/signupController.js`
+                the second parameter passes the variable `idNum`
+                as the value of the field `idNum`
+                to the server
+                the last parameter executes a callback function
+                when the server sent a response
+            */
+            $.get('/getCheckUsername', {username: username}, function (result) {
+                if(result.username == username) {
+                  $('#usernamereg').css('background-color', '#FF6A55');
+                  $('#error').text('Existing Username');
+                }
+
+                else if (result.username != username) {
+                  $('#usernamereg').css('background-color', '#9CD9BF');
+                  $('#error').html('&nbsp');
+                  $('#submit2').prop('disabled', false);
+                }
+            });
+        });
+    });
+  </script>
+</head>
+<body>
+<div id="error">&nbsp;</div>
+
+<!--<form method="post" action="/login">-->
+<form method="post">
+  <div class="logincontainer" id="loginbox">
+  	<div id="loginheader"> <img src="images/hiku-big.png" width=50%> </div>
+  	<hr width="80%">
+
+    	<div style="font-size: 22px"> Username </div>
+    	<input type="text" name="username" id="username" required>
+    	<div style="font-size: 22px"> Password </div>
+    	<input type="password" id="password" name="password" style="margin-bottom: 20px" required>
+
+    	<button class="bottombutton" id="submit" type="submit" disabled><p style="margin-top:6px">Login</p></button>
+
+      <p id="error">{{error}}</p>
+  </div>
+</form>
+
+
+</body>
+</html>

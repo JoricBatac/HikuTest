@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300&display=swap');
+body {
+	background-color: #4c566a;
+	margin: auto;
+  width: 100%;
+	font-family: 'Lexend';
+  background-image: url('/images/backdrop.jpg');
+	background-attachment: fixed;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+/* Navigation Bar */
+.container{
+	display: flex;
+	background-color: #4c566a;
+	justify-content: right;
+	width: 100%;
+	opacity: 30%;
+	transition: opacity .2s ease-out;
+	position: fixed;
+	top: 0px;
+	z-index: 1;
+}
+.container:hover {
+	opacity: 90%;
+	transition: opacity .2s ease-out;
+}
+.navbutton{
+	padding-left: 20px;
+	padding-right: 20px;
+	display:inline-block;
+	text-align: center;
+	color:#88c0d0;
+	cursor: pointer;
+	font-size: 125%;
+}
+.navbutton:hover{
+	background-color: #88c0d0;
+	color: white;
+	margin-top: auto;
+	margin-bottom: auto;
+	transition: .5s ease;
+}
+
+#hello_text{
+
+	margin-right:auto; 
+	margin-top: auto; 
+	margin-bottom: auto;
+	margin-left: 10px;
+	text-align: left;
+
+	color: white;
+	font-size: 40px;
+}
+
+/* Formatting */
+.center{
+	margin: auto;
+}
