@@ -6,6 +6,49 @@
   <link rel="stylesheet" href="/css/account.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="/js/account.js"></script>
+  <script>
+  	$(document).ready(function () {
+        
+        $('#usernameHolder').keyup(function () {
+
+              var username = $('#usernameHolder').val();
+            
+            $.get('/getCheckUsername', {username: username}, function (result) {
+                if(result.username != username) {
+                  $('#usernameHolder').css('background-color', '#9CD9BF');
+                  $('#changeUsername').prop('disabled', false);
+                }
+                else {
+                  $('#usernameHolder').css('background-color', '#FF6A55');
+                  $('#changeUsername').prop('disabled', true);
+                }
+            });
+        });
+        $('#changeUsername').click(function () {
+
+        if($('#usernameHolder').val()){
+            var username = $('#name').val(); 
+            var refno = $('#refno').val(); 
+            var amount = $('#amount').val();
+            amount = Number.parseFloat(amount).toFixed(2);
+
+            $.get('/add', {name: name , refno:refno, amount:amount}, function (result) {
+                console.log('added ' + name);
+            });
+
+            var card = '<div class="card"><img src="/images/icon.webp" class="icon"><div class="info"><p class="text">' + name + '  </p><p class="text"> ' + refno + ' </p><p class="text"> Php '+ amount + ' </p></div><button class="remove"> X </button></div>'
+            $('#cards').append(card);
+
+            $('#name').val(''); 
+            $('#refno').val(''); 
+            $('#amount').val('');
+        }
+        else{
+            $('#error').text('Fill up all fields.');
+        }
+    });
+    });
+  </script>
 </head>
 <body onload = "start()">
   
@@ -15,20 +58,20 @@
 	<div class="settingbox" style="margin-left:auto;">
 		<div class="headertext">Username</div>
 		<hr>
-		<input type="text" value="{{username}}">
-		<button onClick="nameChange();" class="bottombutton">Change Username</button>
+		<input type="text" value="{{username}}" id="usernameHolder">
+		<button onClick="nameChange();" class="bottombutton" id="changeUsername">Change Username</button>
 	</div>
 	<div class="settingbox">
 		<div class="headertext">Password</div>
 		<hr>
 		<input type="password">
-		<button onClick="passChange();" class="bottombutton">Change Password</button>
+		<button onClick="passChange();" class="bottombutton" id="changePassword">Change Password</button>
 	</div>
 	<div class="settingbox" id="statusbox" style="margin-right:auto;">
 		<div class="headertext">Status</div>
 		<hr>
 		<input type="text">
-		<button onClick="statusChange();" class="bottombutton">Change Status</button>
+		<button onClick="statusChange();" class="bottombutton" id="changeStatus">Change Status</button>
 		</div>
 	</div>
 </div>
