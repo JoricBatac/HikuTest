@@ -46,6 +46,7 @@ const registerController = {
     else {
       var username = req.body.username;
       var password = req.body.password;
+      var img_index = parseInt(req.body.img_index);
 
       bcrypt.hash(password, saltRounds, function(err, hash) {
         var user = {
@@ -54,7 +55,7 @@ const registerController = {
           status: 'Welcome to Hiku!',
           tier: 0,
           level: 1,
-          profpic:1
+          profpic: img_index
         }
 
         db.insertOne(User, user, function(flag) {

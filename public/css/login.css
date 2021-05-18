@@ -199,3 +199,7 @@ input:hover{
 .profpics:hover{
 	cursor: pointer;
 }
+
+#img_index{
+	visibility: hidden;
+}

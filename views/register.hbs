@@ -8,32 +8,35 @@
   <script src="/js/login.js"></script>
   <script>
         $(document).ready(function () {
-
           $( "#prof0" ).click(function() {
             console.log("prof0 selected");
             modal.style.display = "none";
             $('#profpicreg').attr('src', "images/avatar/0.png");
-            
+            $("#img_index").val("0");
           });
           $( "#prof1" ).click(function() {
             console.log("prof1 selected");
             modal.style.display = "none";
             $('#profpicreg').attr('src', "images/avatar/1.png");
+            $("#img_index").val("1");
           });
           $( "#prof2" ).click(function() {
             console.log("prof2 selected");
             modal.style.display = "none";
             $('#profpicreg').attr('src', "images/avatar/2.png");
+            $("#img_index").val("2");
           });
           $( "#prof3" ).click(function() {
             console.log("prof3 selected");
             modal.style.display = "none";
             $('#profpicreg').attr('src', "images/avatar/3.png");
+            $("#img_index").val("3");
           });
           $( "#prof4" ).click(function() {
             console.log("prof4 selected");
             modal.style.display = "none";
             $('#profpicreg').attr('src', "images/avatar/4.png");
+            $("#img_index").val("4");
           });
 
           // Get the modal
@@ -173,6 +176,7 @@
             <input class="text_field"type="password" name="password" required>
             <div style="font-size: 22px"> Confirm Password </div>
             <input class="text_field"type="password" style="margin-bottom: 20px">
+            <input type="text" id="img_index" name="img_index">
             <button class="bottombutton" id="submit2" type="submit" disabled><p style="margin-top:6px">Register</p></button>
         </div>
       </form>
