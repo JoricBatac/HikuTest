@@ -28,6 +28,7 @@ var UserSchema = new mongoose.Schema({
     armOwned: [{type: Number, required: false}],
     weapOwned: [{type: Number, required: false}],
     shieldOwned: [{type: Number, required: false}],
+    charOwned: [{type: Number, required: false}],
     task: { 
     //end date
         type: Date,
