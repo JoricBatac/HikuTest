@@ -1,3 +1,4 @@
+/*
 function register() {
   document.getElementById("loginbox").style.display = "none";
   document.getElementById("registerbox").style.display = "block";
@@ -10,3 +11,4 @@ function loginreturn() {
   document.getElementById("registerbutton").style.display = "block";
   document.getElementById("returnlogin").style.display = "none";
 }
+*/

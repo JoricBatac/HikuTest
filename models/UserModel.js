@@ -21,7 +21,7 @@ var UserSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
-    level: {
+    tierProgress: {
         type: Number,
         required: false
     },
@@ -29,7 +29,7 @@ var UserSchema = new mongoose.Schema({
     weapOwned: [{type: Number, required: false}],
     shieldOwned: [{type: Number, required: false}],
     charOwned: [{type: Number, required: false}],
-    task: { 
+    task: {
     //end date
         type: Date,
         required: false

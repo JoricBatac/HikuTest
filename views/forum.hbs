@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forum</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forum.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!--<script src="/js/forum.js"></script>-->
+  <script>
+  $(document).ready(function() {
+
+    $('#submitPost').click(function() {
+      var username = {{{json username}}};
+      var profpic = {{{json profpic}}};
+      var title = $('#searchfield').val();
+      var content = $('#forumSubmission').val();
+
+      if (title === '')
+        title = 'No Title';
+      if (content === '')
+        content = 'No Content';
+
+      var discussion = {
+        username: username,
+        profpic: profpic,
+        title: title + '\n\n',
+        content: content
+      };
+      $.get('/postDiscussion', discussion, function(data, status) {
+        if (status == "success") {
+          console.log('Success in adding');
+        }
+        else {
+          console.log('no success in adding');
+        }
+      });
+
+      var postContainer = $('<div class="forumpost"></div>');
+
+      var postType = $('<div class="forumtype forumtype_discussion"></div>');
+      var postTypeIcon = $('<div class="forumtype_icons disc_icon"></div>');
+
+      var postContent = $('<div class="forumcontent"></div>');
+
+      var postHeader = $('<div class="forumpostheader"></div>');
+      var postUserIcon = $('<img class="usericon" src="../images/avatar/{{profpic}}.png" alt="{{username}} Icon">');
+      var postHeaderContent = $('<div class="forumheadercontent"></div>');
+      var date = new Date();
+      postHeaderContent.html(username +  '<span style="color:gray"> • Posted ' + date.toLocaleString() + '</span>');
+
+      var postLink = $('<a href="forumpost3.html"></a>');
+      var postBody = $('<p class="forumbodycontent"></p>');
+      printTitle = title.bold() + '\n\n';
+      postBody.html(printTitle + content);
+
+      var postFooter = $('<div class="forumpostfooter"></div>');
+      var postDislike = $('<input class="forumreax" type="image" src="../images/dislike.png">').click(function(){posts[i].rating -= 1; postRatingCnt.text(posts[i].rating);});
+      var postRatingCnt = $('<p class="forumreaxcnt"></p>');
+      postRatingCnt.text('0');
+      var postLike = $('<input id="likebtn1" class="forumreax" type="image" src="../images/like.png">').click(function(){posts[i].rating += 1; postRatingCnt.text(posts[i].rating);});
+      var postCommentCnt = $('<p class="forumcommentcnt"></p>');
+
+      postContainer.append(postType);
+      postType.append(postTypeIcon);
+
+      postContainer.append(postContent);
+      postContent.append(postHeader);
+      postHeader.append(postUserIcon);
+      postHeader.append(postHeaderContent);
+      postContent.append(postLink);
+      postLink.append(postBody);
+
+      postContent.append(postFooter);
+      postFooter.append(postDislike);
+      postFooter.append(postRatingCnt);
+      postFooter.append(postLike);
+      postFooter.append(postCommentCnt);
+
+      $('#forumlist').prepend(postContainer);
+
+      $('#searchfield').val('');
+      $('#forumSubmission').val('');
+    });
+  });
+
+  </script>
+</head>
+<body>
+  <div id="top"></div>
+  {{> header username=username}}
+
+  <div class="forumpagebody">
+
+    <!-- Action Section -->
+    <div class="actionsection">
+      <div id="filterSelection">
+        <select id="filter">
+          <option value="all" selected>All</option>
+          <option value="discussion">Discussions</option>
+          <option value="battle">Battles</option>
+          <option value="explore">Explorations</option>
+          <option value="trade">Trades</option>
+        </select>
+      </div>
+      <div id="searchdiv">
+        <!--<input type="text" id="searchfield" placeholder="Search Forum...">-->
+        <input type="text" placeholder="Search Forum...">
+        <input type="button" id="searchbutton" onClick="searchText();" value="Search">
+      </div>
+      <div id="createpost">
+        <form id="discinput">
+          <input type="text" name="title" id="searchfield" placeholder="Title">
+          <textarea placeholder="Create Discussion" name="content" id="forumSubmission" name="forumSubmission"></textarea>
+        </form>
+        <input type="button" name="submitPost" id="submitPost" value="SUBMIT">
+      </div>
+      <div id="otherforumactions">
+        <a href="/battle"><div class="forumactions" id="reqbattle">Battle!</div></a>
+        <p class="actiondesc">Request assistance or challenge!</p>
+        <a href="/explore"><div class="forumactions" id="reqexplore">Explore!</div></a>
+        <p class="actiondesc">Request companions!</p>
+        <a href="/trade"><div class="forumactions" id="reqtrade">Trade!</div></a>
+        <p class="actiondesc">Trade items or characters!</p>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- Forum Post Listing -->
+    <div class="forumsection" id="forumlist">
+      {{#each posts}}
+        {{> discussionpost}}
+      {{/each}}
+    </div>
+  </div>
+  <a id="backtotop" href="#top">Back to Top!</a>
+</body>
+</html>

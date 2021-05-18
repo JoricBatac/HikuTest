@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 // import schemas
 const User = require('./UserModel.js');
+const ForumDiscussion = require('./ForumDiscussionModel.js');
 
 const url = 'mongodb://localhost:27017/hiku-rework';
 

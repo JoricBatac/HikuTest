@@ -48,6 +48,10 @@ app.use(function(req, res) {
   res.render('error', details);
 });
 
+hbs.registerHelper('json', function (content) {
+    return JSON.stringify(content);
+});
+
 app.listen(port, hostname, function() {
   console.log('Server is running at:');
   console.log('http://' + hostname + ':' + port);

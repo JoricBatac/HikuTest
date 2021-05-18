@@ -6,7 +6,7 @@ const homeController = {
   getHome: function(req, res) {
     var query = {username: req.params.username};
 
-    var projection = 'username status tier level profpic task';
+    var projection = 'username status tier tierProgress profpic task';
 
     var details = {};
 
@@ -23,7 +23,7 @@ const homeController = {
         details.username = result.username;
         details.tier = result.tier;
         details.status = result.status;
-        details.level = result.level;
+        details.tierProgress = result.tierProgress;
         details.profpic = result.profpic;
         details.task = result.task;
 

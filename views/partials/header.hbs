@@ -1,14 +1,3 @@
-<!--
-<nav id="header">
-    <a href="/">Home</a>
-    <a href="/register">Sign Up</a>
-    <a href="/login">Log In</a>
-    {{#if flag}}
-        <a href="/home/{{username}}" id="profile">{{username}} aASDFASDASd</a>
-        <a href="/logout">Logout</a>
-    {{/if}}
-</nav>
--->
 
 <!-- Navigation Bar-->
 <div class="container" id="navigation">
@@ -19,6 +8,24 @@
   	</div></a>
     <img src="/images/hiku-small.png" height=40px style=" margin-top: auto; margin-bottom: auto; margin-left: 10px">
     <div id="hello_text">| Hello {{name}}!</div>
+    <a href="/home/{{name}}"><div class="navbutton">
+      <p><b>Home</b></p>
+    </div></a>
+    <a href="/forum/{{name}}"><div class="navbutton">
+      <p><b>Forums</b></p>
+    </div></a>
+    <a href="/explore/{{name}}"><div class="navbutton">
+      <p><b>Explore</b></p>
+    </div></a>
+    <a href="/battle/{{name}}"><div class="navbutton">
+      <p><b>Battle</b></p>
+    </div></a>
+    <a href="/trade/{{name}}"><div class="navbutton">
+      <p><b>Trade</b></p>
+    </div></a>
+    <a href="/account/{{name}}"><div class="navbutton">
+      <p><b>Account</b></p>
+    </div></a>
   {{else}}
     <a href="/"><div class="navbutton">
         <p><b>Login</b></p>
@@ -26,23 +33,4 @@
     <img src="/images/hiku-small.png" height=40px style=" margin-top: auto; margin-bottom: auto; margin-left: 10px">
     <div id="hello_text"></div>
   {{/if}}
-
-  <a href="/home/{{name}}"><div class="navbutton">
-    <p><b>Home</b></p>
-  </div></a>
-  <a href="/forum/{{name}}"><div class="navbutton">
-    <p><b>Forums</b></p>
-  </div></a>
-  <a href="/explore/{{name}}"><div class="navbutton">
-    <p><b>Explore</b></p>
-  </div></a>
-  <a href="/battle/{{name}}"><div class="navbutton">
-    <p><b>Battle</b></p>
-  </div></a>
-  <a href="/trade/{{name}}"><div class="navbutton">
-    <p><b>Trade</b></p>
-  </div></a>
-  <a href="/account/{{name}}"><div class="navbutton">
-    <p><b>Account</b></p>
-  </div></a>
 </div>

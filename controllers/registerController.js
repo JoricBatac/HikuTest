@@ -54,7 +54,7 @@ const registerController = {
           password: hash,
           status: 'Welcome to Hiku!',
           tier: 0,
-          level: 1,
+          tierProgress: 1,
           profpic: img_index
         }
 
