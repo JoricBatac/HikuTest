@@ -13,7 +13,8 @@ const successController = {
       details.flag = false;
     }
 
-    res.render('success', details);
+    //res.render('success', details);
+    res.redirect('/home/' + details.username);
   }
 }
 
