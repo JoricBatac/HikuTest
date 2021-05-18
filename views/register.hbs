@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Index</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="/css/login.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="/js/login.js"></script>
@@ -79,26 +79,38 @@
   </script>
 </head>
 <body>
-<div id="error">&nbsp;</div>
 
 <!--<form method="post" action="/register">-->
-<form method="post">
-  <div class="logincontainer" id="registerbox">
-  	<div id="loginheader"> <img src="images/hiku-big.png" width=50%> </div>
-  	<hr width="80%">
 
-    	<div style="font-size: 22px"> Username </div>
-    	<input type="text" id="usernamereg" name="username" required>
-    	<div style="font-size: 22px"> Email Address </div>
-    	<input type="text">
-    	<div style="font-size: 22px"> Password </div>
-    	<input type="password" name="password" required>
-    	<div style="font-size: 22px"> Confirm Password </div>
-    	<input type="password" style="margin-bottom: 20px">
-    	<button class="bottombutton" id="submit2" type="submit" disabled><p style="margin-top:6px">Register</p></button>
+<div id="midbox">
+    <div id="leftbox">
+      <img id="main_logo" src="images/hiku-big.png" style="width: 256px;">
+      <div class="body_text" id="text_dict">/hî-koo/</div>
+      <div class="body_text" id="text_desc">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</div>
 
-  </div>
-</form>
+      <a href="/" id="back_btn">< Back</a>
+    </div>
+
+    <div id="rightbox">
+      <form method="post">
+        <div class="logincontainer">
+            <div style="font-size: 22px"> Username </div>
+            <input class="text_field"type="text" id="usernamereg" name="username" required>
+            <div style="font-size: 22px"> Email Address </div>
+            <input class="text_field"type="text">
+            <div style="font-size: 22px"> Password </div>
+            <input class="text_field"type="password" name="password" required>
+            <div style="font-size: 22px"> Confirm Password </div>
+            <input class="text_field"type="password" style="margin-bottom: 20px">
+            <button class="bottombutton" id="submit2" type="submit" disabled><p style="margin-top:6px">Register</p></button>
+        </div>
+      </form>
+
+    </div>
+</div>
+
+
+
 
 </body>
 </html>
