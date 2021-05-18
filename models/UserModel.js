@@ -22,7 +22,7 @@ var UserSchema = new mongoose.Schema({
         required: false
     },
     level: {
-        type: String,
+        type: Number,
         required: false
     },
     armOwned: [{type: Number, required: false}],

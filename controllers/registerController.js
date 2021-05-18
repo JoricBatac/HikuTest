@@ -52,7 +52,7 @@ const registerController = {
           username: username,
           password: hash,
           status: 'Welcome to Hiku!',
-          tier: 1,
+          tier: 0,
           level: 1,
           profpic:1
         }
