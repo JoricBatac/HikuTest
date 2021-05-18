@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Account</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/account.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/js/account.js"></script>
+</head>
+<body onload = "start()">
+  
+  {{> header username=username}}
+
+  <div class="rowcontainer" style="margin-top: 70px">
+	<div class="settingbox" style="margin-left:auto;">
+		<div class="headertext">Username</div>
+		<hr>
+		<input type="text" value="{{username}}">
+		<button onClick="nameChange();" class="bottombutton">Change Username</button>
+	</div>
+	<div class="settingbox">
+		<div class="headertext">Password</div>
+		<hr>
+		<input type="password">
+		<button onClick="passChange();" class="bottombutton">Change Password</button>
+	</div>
+	<div class="settingbox" id="statusbox" style="margin-right:auto;">
+		<div class="headertext">Status</div>
+		<hr>
+		<input type="text">
+		<button onClick="statusChange();" class="bottombutton">Change Status</button>
+		</div>
+	</div>
+</div>
+<div class="loadoutbox" style="margin-bottom: 50px">
+	<div class="headertext"> Loadout </div>
+
+	<hr>
+
+	<div class="rowcontainer">
+		<div class="colcontainer" id="charcontainer">
+			<img src="images/placeholder.png" height = 300px id="charImg">
+			<div class="rowcontainer">
+				<button onClick="loadoutChange(1, 0);" class="loadoutButton"> Prev </button>
+				<div class="charDetail" id="charName">  </div>
+				<button onClick="loadoutChange(1, 1);" class="loadoutButton"> Next </button>
+			</div>
+
+		</div>
+		<div class="colcontainer" id="loadoutMargin">
+			<div class="rowcontainer">
+				<button onClick="loadoutChange(2, 0);" class="loadoutButton arrow"> Prev </button>
+				<div class="loadoutDetail" id="weaponName">  </div>
+				<button onClick="loadoutChange(2, 1);" class="loadoutButton arrow"> Next </button>
+			</div>
+			<div class="rowcontainer">
+				<button onClick="loadoutChange(3, 0);" class="loadoutButton arrow"> Prev </button>
+				<div class="loadoutDetail" id="shieldName">  </div>
+				<button onClick="loadoutChange(3, 1);" class="loadoutButton arrow"> Next </button>
+			</div>
+			<div class="rowcontainer">
+				<button onClick="loadoutChange(4, 0);" class="loadoutButton arrow"> Prev </button>
+				<div class="loadoutDetail" id="armorName">  </div>
+				<button onClick="loadoutChange(4, 1);" class="loadoutButton arrow"> Next </button>
+			</div>
+		</div>
+		</div>
+		<hr style="margin-top: 20px">
+		<div class="rowcontainer">
+			<div class="charStats"> Health Points </div>
+			<div class="charStats"> Attack </div>
+			<div class="charStats"> Defence </div>
+		</div>
+		<div class="rowcontainer" style="margin-bottom: 10px">
+			<div class="charStats" id="hp" style="background-color:#3b4252"></div>
+			<div class="charStats" id="att" style="background-color:#3b4252"></div>
+			<div class="charStats" id="def" style="background-color:#3b4252"></div>
+		</div>
+		<div class="rowcontainer" style="margin-bottom: 10px">
+			<div class="charStats" id="hpadd" style="background-color:#3b4252; color:#83d4ab"></div>
+			<div class="charStats" id="attadd" style="background-color:#3b4252; color:#83d4ab"></div>
+			<div class="charStats" id="defadd" style="background-color:#3b4252; color:#83d4ab"></div>
+		</div>
+</div>
+</div>
+
+</body>
+</html>
