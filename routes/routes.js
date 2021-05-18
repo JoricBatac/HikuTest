@@ -10,6 +10,8 @@ const logoutController = require('../controllers/logoutController.js');
 
 const homeController = require('../controllers/homeController.js');
 
+const accountController = require('../controllers/accountController.js');
+
 const validation = require('../helpers/validation.js');
 
 const app = express();
@@ -29,5 +31,6 @@ app.post('/login', loginController.postLogIn);
 app.get('/logout', logoutController.getLogOut);
 
 app.get('/home/:username', homeController.getHome);
+app.get('/account/:username', accountController.getAccount);
 
 module.exports = app;
