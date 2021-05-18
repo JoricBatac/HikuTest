@@ -21,6 +21,9 @@ const homeController = {
     db.findOne(User, query, projection, function(result) {
       if (result != null) {
         details.username = result.username;
+        details.tier = result.tier;
+        details.status = result.status;
+        details.profpic = result.profpic;
 
         res.render('home', details);
       }
