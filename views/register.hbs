@@ -8,11 +8,65 @@
   <script src="/js/login.js"></script>
   <script>
         $(document).ready(function () {
+
+          $( "#prof0" ).click(function() {
+            console.log("prof0 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/0.png");
+            
+          });
+          $( "#prof1" ).click(function() {
+            console.log("prof1 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/1.png");
+          });
+          $( "#prof2" ).click(function() {
+            console.log("prof2 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/2.png");
+          });
+          $( "#prof3" ).click(function() {
+            console.log("prof3 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/3.png");
+          });
+          $( "#prof4" ).click(function() {
+            console.log("prof4 selected");
+            modal.style.display = "none";
+            $('#profpicreg').attr('src', "images/avatar/4.png");
+          });
+
+          // Get the modal
+          var modal = document.getElementById("myModal");
+
+          // Get the button that opens the modal
+          var btn = document.getElementById("myBtn");
+
+          // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName("close")[0];
+
+          // When the user clicks on the button, open the modal
+          btn.onclick = function() {
+            modal.style.display = "block";
+          }
+
+          // When the user clicks on <span> (x), close the modal
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          } 
         /*
             attach the event `keyup` to the html element where id = `idNum`
             this html element is an `<input>` element
             this event activates when the user releases a key on the keyboard
         */
+        
         $('#username').keyup(function () {
 
             // get the value entered the user in the `<input>` element
@@ -82,6 +136,19 @@
 
 <!--<form method="post" action="/register">-->
 
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div>Select an avatar:</div>
+    <img id="prof0" class="profpics" src="images/avatar/0.png">
+    <img id="prof1" class="profpics" src="images/avatar/1.png">
+    <img id="prof2" class="profpics" src="images/avatar/2.png">
+    <img id="prof3" class="profpics" src="images/avatar/3.png">
+    <img id="prof4" class="profpics" src="images/avatar/4.png">
+  </div>
+
+</div> 
+
 <div id="midbox">
     <div id="leftbox">
       <img id="main_logo" src="images/hiku-big.png" style="width: 256px;">
@@ -92,12 +159,16 @@
     </div>
 
     <div id="rightbox">
+
+      <div id="avatarbox">
+        <img id="profpicreg" src="images/avatar/null.png" width="128" height="128">
+      <button id="myBtn">Pick an Avatar</button>
+      </div>
+      
       <form method="post">
         <div class="logincontainer">
             <div style="font-size: 22px"> Username </div>
             <input class="text_field"type="text" id="usernamereg" name="username" required>
-            <div style="font-size: 22px"> Email Address </div>
-            <input class="text_field"type="text">
             <div style="font-size: 22px"> Password </div>
             <input class="text_field"type="password" name="password" required>
             <div style="font-size: 22px"> Confirm Password </div>
@@ -108,9 +179,6 @@
 
     </div>
 </div>
-
-
-
 
 </body>
 </html>
