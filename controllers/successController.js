@@ -14,7 +14,7 @@ const successController = {
     }
 
     //res.render('success', details);
-    res.redirect('/home/' + details.username);
+    res.redirect('/login');
   }
 }
 
