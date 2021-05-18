@@ -50,7 +50,11 @@ const registerController = {
       bcrypt.hash(password, saltRounds, function(err, hash) {
         var user = {
           username: username,
-          password: hash
+          password: hash,
+          status: 'Welcome to Hiku!',
+          tier: 0,
+          level: 1,
+          profpic:1
         }
 
         db.insertOne(User, user, function(flag) {

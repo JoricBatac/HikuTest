@@ -3,10 +3,10 @@ const db = require('../models/db.js');
 const User = require('../models/UserModel.js');
 
 const homeController = {
-  getHome: function(req, res) {
+  getAccount: function(req, res) {
     var query = {username: req.params.username};
 
-    var projection = 'username status tier level profpic task';
+    var projection = 'username armOwned weapOwned shieldOwned';
 
     var details = {};
 
@@ -21,19 +21,20 @@ const homeController = {
     db.findOne(User, query, projection, function(result) {
       if (result != null) {
         details.username = result.username;
-        details.tier = result.tier;
-        details.status = result.status;
-        details.level = result.level;
-        details.profpic = result.profpic;
-        details.task = result.task;
-
-        res.render('home', details);
+        details.armOwned = result.armOwned;
+        details.weapOwned = result.weapOwned;
+        details.shieldOwned = result.shieldOwned;
+        console.log(details);
+        res.render('account', details);
       }
       else {
         res.render('error', details);
       }
     });
-  }
+  },
+  changeUsername: function(req, res) {
+
+  },
 }
 
 module.exports = homeController;

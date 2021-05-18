@@ -26,7 +26,7 @@ const loginController = {
       if (result) {
         var user = {
           username: result.username,
-          password: result.password
+          password: result.password,
         };
 
         bcrypt.compare(password, result.password, function(err, equal) {
