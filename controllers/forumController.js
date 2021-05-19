@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
@@ -33,8 +35,12 @@ const forumController = {
             result = JSON.stringify(result);
             result = JSON.parse(result);
             for (var i = 0; i < result.length; i++) {
+              /*
               var date = new Date(result[i].postedAt);
               result[i].postedAt = date.toLocaleString();
+              */
+              var date = new Date(result[i].postedAt);
+              result[i].postedAt = moment(date).fromNow();
             }
             details.posts = result;
             details.posts.reverse();
@@ -46,8 +52,6 @@ const forumController = {
         res.render('error', details);
       }
     });
-
-
   },
 
   getAddDiscussion: function(req, res) {
@@ -68,7 +72,48 @@ const forumController = {
         console.log('Added ' + discussion.title);
       }
     });
+  },
+
+  getForumPost: function(req, res) {
+
+    var query = {postID: req.params.postID};
+
+    var projection = 'username profpic postID postedAt title content rating';
+
+    var details = {};
+
+    if (req.session.username) {
+      details.flag = true;
+      details.name = req.session.username;
+    }
+    else {
+      details.flag = false;
+    }
+
+    db.findOne(ForumDiscussion, query, projection, function(result) {
+      if (result != null) {
+        details.username = result.username;
+        details.profpic = result.profpic;
+        details.postID = result.postID;
+        details.title = result.title;
+        details.content = result.content;
+        details.rating = result.rating;
+        
+        var date = new Date(result.postedAt);
+        details.postedAt = moment(date).fromNow();
+
+        res.render('forumpost', details);
+      }
+      else {
+        res.render('error', details);
+      }
+    });
   }
+
+  /*
+  getLikePost: function(req, res) {
+    db.updateOne(ForumDiscussion, )
+  }*/
 }
 
 module.exports = forumController;

@@ -16,6 +16,7 @@ npm install express-session
 npm install bcrypt
 npm install express-validator
 npm install connect-mongo@3
+npm install moment
 
 done to install/initialize all necessary modules (express, dotenv, hbs, etc) used in the proj (for the README):
   npm install
@@ -37,3 +38,4 @@ express-session
 bcrypt
 express-validator
 connect-mongo
+moment

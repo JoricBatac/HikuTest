@@ -5,6 +5,12 @@ var forumDiscussionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    // causes DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
+    postID: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: mongoose.Types.ObjectId,
+        index: { unique: true }
+    },
     profpic: {
         type: Number,
         required: false

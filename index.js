@@ -51,6 +51,9 @@ app.use(function(req, res) {
 hbs.registerHelper('json', function (content) {
     return JSON.stringify(content);
 });
+hbs.registerHelper('bold', function (content) {
+  return '<b>' + content.fn(this) + '</b>';
+});
 
 app.listen(port, hostname, function() {
   console.log('Server is running at:');

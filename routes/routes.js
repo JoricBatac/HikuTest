@@ -38,5 +38,7 @@ app.get('/account/:username', accountController.getAccount);
 
 app.get('/forum/:username', forumController.getForum);
 app.get('/postDiscussion', forumController.getAddDiscussion);
+app.get('/forum/post/:postID', forumController.getForumPost);
+//app.get('/likePost', forumController.getLikePost);
 
 module.exports = app;

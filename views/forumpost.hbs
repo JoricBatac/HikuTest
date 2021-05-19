@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/forumposts.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+
+  </script>
+</head>
+<body>
+
+  {{> header username=username}}
+
+  <!-- Main -->
+  <div class="postsection">
+    <div class="forumtype" id="forumtypediscussion">
+      <div class="forum_type_icons" id="disc_icon"></div>
+    </div>
+    <div class="postheader">
+      <img class="usericon" src="/images/avatar/{{profpic}}.png" alt="{{username}} Icon">
+      <div class="postheadercontent">
+        {{~username~}} <span style="color:grey"> • Posted {{postedAt}}</span>
+      </div>
+      <a class="edit">edit</a>
+    </div>
+    <div class="mainpost">
+
+      <div class="mainpostbody">
+        {{~#bold}}
+          {{~title~}}
+        {{/bold}}<br><br>
+        {{~content~}}
+      </div>
+      <div class="mainpostfooter">
+        <input id="dislike" class="forumreax" type="image" src="/images/dislike.png">
+        <p class="forumreaxcnt">{{rating}}</p>
+        <input type="image" id="like" class="forumreax" src="/images/like.png">
+      </div>
+
+    </div>
+
+    <!-- Reply -->
+    <div id="submitreplysection">
+      <form id="replyinput">
+      <textarea placeholder="Comment Reply..." id="replysubmission" name="replysubmission"></textarea>
+      </form>
+      <input type="button" id="submitbutton" onClick="submitText();" value="Comment">
+    </div>
+
+
+  </div>
+</body>
+</html>

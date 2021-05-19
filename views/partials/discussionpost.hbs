@@ -7,20 +7,22 @@
     <div class="forumpostheader">
       <img class="usericon" src="../images/avatar/{{profpic}}.png" alt="{{username}} Icon">
       <div class="forumheadercontent">
-        {{username}} <span style="color:grey"> • Posted {{postedAt}}</span>
+        {{~username~}} <span style="color:grey"> • Posted {{postedAt}}</span>
       </div>
     </div>
-    <a href="forumpost3.html">
+    <a href="/forum/post/{{postID}}">
       <div class="forumbodycontent">
-        <b>{{title}}</b>
-        {{content}}
+        {{~#bold}}
+          {{~title~}}
+        {{/bold}}<br><br>
+        {{~content~}}
       </div>
     </a>
 
     <div class="forumpostfooter">
-      <input class="forumreax" type="image" src="../images/dislike.png">
+      <input id="dislikebtn" class="forumreax" type="image" src="../images/dislike.png">
       <p class="forumreaxcnt">{{rating}}</p>
-      <input class="forumreax" type="image" src="../images/like.png">
+      <input id="likebtn" class="forumreax" type="image" src="../images/like.png">
       <p class="forumcommentcnt"></p>
     </div>
   </div>
