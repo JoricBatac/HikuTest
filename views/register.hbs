@@ -64,46 +64,59 @@
               modal.style.display = "none";
             }
           } 
-        /*
-            attach the event `keyup` to the html element where id = `idNum`
-            this html element is an `<input>` element
-            this event activates when the user releases a key on the keyboard
-        */
         
         $('#username').keyup(function () {
-
-            // get the value entered the user in the `<input>` element
-
+          /* --For checking if fields are not empty--
+              if(!($('#username').val()) && !($('#password').val()) && !($('#confpassword').val())){
+                    $('#error').html('Please fill up the field');
+                    $('#submit').css('background-color', '#FF6A55');
+                    $('#submit').prop('disabled', true);
+                  }
+          */
               var username = $('#username').val();
 
-            /*
-                send an HTTP GET request using JQuery AJAX
-                the first parameter is the path in our server
-                which is defined in `../../routes/routes.js`
-                the server will execute the function getCheckID()
-                defined in `../../controllers/signupController.js`
-                the second parameter passes the variable `idNum`
-                as the value of the field `idNum`
-                to the server
-                the last parameter executes a callback function
-                when the server sent a response
-            */
             $.get('/getCheckUsername', {username: username}, function (result) {
                 if(result.username == username || !($('#username').val())) {
                   $('#username').css('background-color', '#FF6A55');
                   $('#error').text('Username already taken!');
-                  $('#submit').prop('disabled', true);
-                  if(!($('#username').val())){
-                    $('#error').html('Please fill up the field');
-                  }
                 }
                 else {
                   $('#username').css('background-color', '#9CD9BF');
                   $('#error').text('');
-                  $('#submit').prop('disabled', false);
+                  $('#confpassword').keyup(function () {
+                    var password = $('#password').val();
+                    var confpassword = $('#confpassword').val();
+
+                    if(password == confpassword){
+                      $('#confpassword').css('background-color', '#9CD9BF');
+                      $('#error').text('');
+                      $('#submit').css('background-color', '#4c566a');
+                    }
+                    else{
+                      $('#confpassword').css('background-color', '#FF6A55');
+                      $('#error').text('Passwords are not the same!');
+                      $('#submit').css('background-color', '#FF6A55');
+                    }
+                  });
                 }
             });
         });
+        $('#submit').click(function () {
+          // your code here
+
+          if($('#username').val() && $('#password').val() && $('#confpassword').val()){
+              $('#error').text('');
+              var username = $('#username').val(); 
+              var password = $('#password').val(); 
+              console.log(username +' '+  password)
+              $.get('/getRegisterAcc', {username:username , password:password}, function (result) {
+                  console.log('added ' + name);
+              });
+          }
+          else{
+              $('#error').text('Fill up all fields.');
+          }
+       });
     });
   </script>
 </head>
@@ -140,16 +153,16 @@
       <button id="myBtn">Pick an Avatar</button>
       </div>
       
-      <form method="post">
+      <form id="register">
         <div class="logincontainer">
             <div style="font-size: 22px"> Username </div>
             <input class="text_field"type="text" id="username" name="username" required>
             <div style="font-size: 22px"> Password </div>
-            <input class="text_field"type="password" name="password" required>
+            <input class="text_field"type="password" id="password" name="password" required>
             <div style="font-size: 22px"> Confirm Password </div>
-            <input class="text_field"type="password">
+            <input class="text_field"type="password" id="confpassword" required>
             <input type="text" id="img_index" name="img_index" style="height:0px">
-            <button class="bottombutton" id="submit" type="submit" disabled><p style="margin-top:6px">Register</p></button>
+            <button class="bottombutton" id="submit" type="button"><p style="margin-top:6px">Register</p></button>
 
             <p id="error"></p>
         </div>

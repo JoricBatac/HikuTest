@@ -22,7 +22,7 @@ const registerController = {
     console.log('waowao');
     res.render('register', details);
   },
-  postRegister: function(req, res) {
+  getRegisterAcc: function(req, res) {
     var errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -44,8 +44,9 @@ const registerController = {
       res.render('register', details);
     }
     else {
-      var username = req.body.username;
-      var password = req.body.password;
+      var username = req.query.username;
+      var password = req.query.password;
+      console.log('hello');
       var img_index = parseInt(req.body.img_index);
 
       bcrypt.hash(password, saltRounds, function(err, hash) {
@@ -56,15 +57,18 @@ const registerController = {
           tier: 0,
           tierProgress: 1,
           profpic: img_index,
-          charOwned: [0],
+          charOwned: [0,1],
           armOwned: [0],
           weapOwned: [0],
-          shieldOwned: [0],
+          shieldOwned: [0]
         }
-
+        console.log('hello');
         db.insertOne(User, user, function(flag) {
           if (flag) {
             res.redirect('/success?username=' + username);
+          }
+          else{
+            console.log(':(')
           }
         });
       });
