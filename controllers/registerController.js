@@ -55,7 +55,11 @@ const registerController = {
           status: 'Welcome to Hiku!',
           tier: 0,
           tierProgress: 1,
-          profpic: img_index
+          profpic: img_index,
+          charOwned: [0],
+          armOwned: [0],
+          weapOwned: [0],
+          shieldOwned: [0],
         }
 
         db.insertOne(User, user, function(flag) {

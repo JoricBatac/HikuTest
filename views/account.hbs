@@ -12,28 +12,29 @@
   {{> header username=username}}
 
   <div class="rowcontainer" style="margin-top: 70px">
-	<div class="settingbox" style="margin-left:auto;">
-		<div class="headertext">Username</div>
+	<div class="settingbox" id="usernameBox" style="margin-left:auto;">
+		<div class="headertext" id="userHead">Username</div>
 		<hr>
 		<input type="text" value="{{username}}" id="usernameHolder">
+		<div id="error" style="color:#FF6A55"></div>
 		<button onClick="nameChange();" class="bottombutton" id="changeUsername">Change Username</button>
 	</div>
-	<div class="settingbox">
-		<div class="headertext">Password</div>
+	<div class="settingbox" id="passwordBox">
+		<div class="headertext" id="passHead">Password</div>
 		<hr>
 		<input type="password">
 		<button onClick="passChange();" class="bottombutton" id="changePassword">Change Password</button>
 	</div>
-	<div class="settingbox" id="statusbox" style="margin-right:auto;">
-		<div class="headertext">Status</div>
+	<div class="settingbox" id="statusBox" style="margin-right:auto;">
+		<div class="headertext" id="statHead">Status</div>
 		<hr>
 		<input type="text">
 		<button onClick="statusChange();" class="bottombutton" id="changeStatus">Change Status</button>
 		</div>
 	</div>
 </div>
-<div class="loadoutbox" style="margin-bottom: 50px">
-	<div class="headertext"> Loadout </div>
+<div class="loadoutbox" id="loadoutBox" style="margin-bottom: 50px">
+	<div class="headertext" id="loadoutHead"> Loadout </div>
 
 	<hr>
 

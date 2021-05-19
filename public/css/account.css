@@ -28,6 +28,7 @@ button{
 	color:#eceff4;
 	margin-top: 3px;
 	margin-bottom: auto;
+	cursor: pointer;
 }
 .settingbox{
 	height: 60px;
@@ -42,10 +43,6 @@ button{
     opacity:30%;
     transition: .5s ease;
     overflow: hidden;
-}
-.settingbox:hover{
-    opacity:1;
-    height: 175px;
 }
 
 .loadoutbox{
@@ -62,10 +59,7 @@ button{
     transition: .5s ease;
     overflow: hidden;
 }
-.loadoutbox:hover{
-	opacity:1;
-	height: 585px;
-}
+
 .bottombutton{
 	text-align: center;
 	width: 100%;
@@ -142,11 +136,6 @@ button{
 	margin-top: auto;
 	margin-bottom: 40px;
 	margin-left: auto;
-}
-#statusbox:hover{
-	opacity:1;
-    height: 175px;
-    width: 500px;
 }
 input{
   width: 70%;

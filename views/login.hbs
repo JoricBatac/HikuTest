@@ -8,7 +8,7 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="/js/login.js"></script>
   <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
 
         $('#username').keyup(function () {
 
@@ -24,37 +24,7 @@
                 else {
                   $('#username').css('background-color', '#FF6A55');
                   $('#error').text('Invalid Username');
-                }
-            });
-        });
-        $('#usernamereg').keyup(function () {
-
-            // get the value entered the user in the `<input>` element
-
-              var username = $('#usernamereg').val();
-
-            /*
-                send an HTTP GET request using JQuery AJAX
-                the first parameter is the path in our server
-                which is defined in `../../routes/routes.js`
-                the server will execute the function getCheckID()
-                defined in `../../controllers/signupController.js`
-                the second parameter passes the variable `idNum`
-                as the value of the field `idNum`
-                to the server
-                the last parameter executes a callback function
-                when the server sent a response
-            */
-            $.get('/getCheckUsername', {username: username}, function (result) {
-                if(result.username == username) {
-                  $('#usernamereg').css('background-color', '#FF6A55');
-                  $('#error').text('Existing Username');
-                }
-
-                else if (result.username != username) {
-                  $('#usernamereg').css('background-color', '#9CD9BF');
-                  $('#error').html('&nbsp');
-                  $('#submit2').prop('disabled', false);
+                  $('#submit').prop('disabled', true);
                 }
             });
         });
@@ -88,7 +58,7 @@
 
             <button class="bottombutton" id="submit" type="submit" disabled><p style="margin-top:6px">Login</p></button>
 
-            <p id="error">{{error}}</p>
+            <p id="error"></p>
         </div>
       </form>
 

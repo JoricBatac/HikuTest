@@ -89,46 +89,18 @@
                 when the server sent a response
             */
             $.get('/getCheckUsername', {username: username}, function (result) {
-                if(result.username == username) {
-                  $('#username').css('background-color', '#9CD9BF');
-                  $('#error').html('&nbsp');
-                  $('#submit').prop('disabled', false);
-                }
-
-                else {
+                if(result.username == username || !($('#username').val())) {
                   $('#username').css('background-color', '#FF6A55');
-                  $('#error').text('Invalid Username');
+                  $('#error').text('Username already taken!');
+                  $('#submit').prop('disabled', true);
+                  if(!($('#username').val())){
+                    $('#error').html('Please fill up the field');
+                  }
                 }
-            });
-        });
-        $('#usernamereg').keyup(function () {
-
-            // get the value entered the user in the `<input>` element
-
-              var username = $('#usernamereg').val();
-
-            /*
-                send an HTTP GET request using JQuery AJAX
-                the first parameter is the path in our server
-                which is defined in `../../routes/routes.js`
-                the server will execute the function getCheckID()
-                defined in `../../controllers/signupController.js`
-                the second parameter passes the variable `idNum`
-                as the value of the field `idNum`
-                to the server
-                the last parameter executes a callback function
-                when the server sent a response
-            */
-            $.get('/getCheckUsername', {username: username}, function (result) {
-                if(result.username == username) {
-                  $('#usernamereg').css('background-color', '#FF6A55');
-                  $('#error').text('Existing Username');
-                }
-
-                else if (result.username != username) {
-                  $('#usernamereg').css('background-color', '#9CD9BF');
-                  $('#error').html('&nbsp');
-                  $('#submit2').prop('disabled', false);
+                else {
+                  $('#username').css('background-color', '#9CD9BF');
+                  $('#error').text('');
+                  $('#submit').prop('disabled', false);
                 }
             });
         });
@@ -171,13 +143,15 @@
       <form method="post">
         <div class="logincontainer">
             <div style="font-size: 22px"> Username </div>
-            <input class="text_field"type="text" id="usernamereg" name="username" required>
+            <input class="text_field"type="text" id="username" name="username" required>
             <div style="font-size: 22px"> Password </div>
             <input class="text_field"type="password" name="password" required>
             <div style="font-size: 22px"> Confirm Password </div>
-            <input class="text_field"type="password" style="margin-bottom: 20px">
-            <input type="text" id="img_index" name="img_index">
-            <button class="bottombutton" id="submit2" type="submit" disabled><p style="margin-top:6px">Register</p></button>
+            <input class="text_field"type="password">
+            <input type="text" id="img_index" name="img_index" style="height:0px">
+            <button class="bottombutton" id="submit" type="submit" disabled><p style="margin-top:6px">Register</p></button>
+
+            <p id="error"></p>
         </div>
       </form>
 
