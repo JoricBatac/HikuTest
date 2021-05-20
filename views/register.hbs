@@ -116,7 +116,7 @@
             else{
               console.log('entering register acc with ');
               console.log(username);
-              $.get('/getRegisterAcc', {username:username , password:password , img_index:img_index}, function (result) {
+              $.post('/register', {username:username , password:password , img_index:img_index}, function (result) {
                   console.log('added ' + name);
               });
             }
@@ -163,7 +163,7 @@
       <button id="myBtn">Pick an Avatar</button>
       </div>
       
-      <form id="register">
+      <form method="post">
         <div class="logincontainer">
             <div style="font-size: 22px"> Username </div>
             <input class="text_field"type="text" id="username" name="username" required>
@@ -172,7 +172,7 @@
             <div style="font-size: 22px"> Confirm Password </div>
             <input class="text_field"type="password" id="confpassword" required>
             <input type="text" id="img_index" name="img_index" style="height:0px">
-            <button class="bottombutton" id="submit" type="button"><p style="margin-top:6px">Register</p></button>
+            <button class="bottombutton" id="submit" type="submit"><p style="margin-top:6px">Register</p></button>
 
             <p id="error"></p>
         </div>

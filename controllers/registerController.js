@@ -22,7 +22,7 @@ const registerController = {
     console.log('waowao');
     res.render('register', details);
   },
-  getRegisterAcc: function(req, res) {
+  postRegister: function(req, res) {
     var errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -44,10 +44,10 @@ const registerController = {
       res.render('register', details);
     }
     else {
-      var username = req.query.username;
-      var password = req.query.password;
+      var username = req.body.username;
+      var password = req.body.password;
       
-      var img_index = parseInt(req.query.img_index);
+      var img_index = parseInt(req.body.img_index);
 
       bcrypt.hash(password, saltRounds, function(err, hash) {
         var user = {

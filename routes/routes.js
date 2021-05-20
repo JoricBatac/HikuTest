@@ -22,7 +22,7 @@ app.get('/favicon.ico', controller.getFavicon);
 app.get('/', controller.getIndex);
 
 app.get('/register', registerController.getRegister);
-app.get('/getRegisterAcc', validation.registerValidation(), registerController.getRegisterAcc);
+app.post('/register', validation.registerValidation(), registerController.postRegister);
 app.get('/getCheckUsername', registerController.getCheckUsername);
 
 app.get('/success', successController.getSuccess);
