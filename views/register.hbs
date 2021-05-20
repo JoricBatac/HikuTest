@@ -105,16 +105,26 @@
           // your code here
 
           if($('#username').val() && $('#password').val() && $('#confpassword').val()){
-              $('#error').text('');
-              var username = $('#username').val(); 
-              var password = $('#password').val(); 
-              console.log(username +' '+  password)
-              $.get('/getRegisterAcc', {username:username , password:password}, function (result) {
+            $('#error').text('');
+            var username = $('#username').val(); 
+            var password = $('#password').val();
+            var img_index = $('#img_index').val();  
+            console.log(username +' hi '+  password);
+            if($('#password').val() != $('#confpassword').val()){
+              $('#error').text('Passwords are not the same!');
+            } 
+            else{
+              console.log('entering register acc with ');
+              console.log(username);
+              $.get('/getRegisterAcc', {username:username , password:password , img_index:img_index}, function (result) {
                   console.log('added ' + name);
               });
+            }
+              
           }
           else{
-              $('#error').text('Fill up all fields.');
+            $('#error').text('Fill up all fields.');
+              
           }
        });
     });

@@ -46,8 +46,8 @@ const registerController = {
     else {
       var username = req.query.username;
       var password = req.query.password;
-      console.log('hello');
-      var img_index = parseInt(req.body.img_index);
+      
+      var img_index = parseInt(req.query.img_index);
 
       bcrypt.hash(password, saltRounds, function(err, hash) {
         var user = {
@@ -58,17 +58,14 @@ const registerController = {
           tierProgress: 1,
           profpic: img_index,
           charOwned: [0,1],
-          armOwned: [0],
-          weapOwned: [0],
-          shieldOwned: [0]
+          armOwned: [0,1],
+          weapOwned: [0,2],
+          shieldOwned: [0,3]
         }
-        console.log('hello');
         db.insertOne(User, user, function(flag) {
+          console.log(flag);
           if (flag) {
-            res.redirect('/success?username=' + username);
-          }
-          else{
-            console.log(':(')
+            res.render('login'); // not sure why this isnt working when flag is true anyways
           }
         });
       });
