@@ -60,7 +60,11 @@ const registerController = {
           charOwned: [0,1],
           armOwned: [0,1],
           weapOwned: [0,2],
-          shieldOwned: [0,3]
+          shieldOwned: [0,3],
+          currW: 0,
+          currS: 0,
+          currA: 0,
+          currC: 0
         }
         db.insertOne(User, user, function(flag) {
           console.log(flag);

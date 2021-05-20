@@ -6,7 +6,7 @@ const homeController = {
   getAccount: function(req, res) {
     var query = {username: req.params.username};
 
-    var projection = 'username armOwned weapOwned shieldOwned';
+    var projection = 'username armOwned weapOwned shieldOwned currC currW currA currS';
 
     var details = {};
 
@@ -24,6 +24,11 @@ const homeController = {
         details.armOwned = result.armOwned;
         details.weapOwned = result.weapOwned;
         details.shieldOwned = result.shieldOwned;
+        details.currC = result.currC;
+        details.currW = result.currW;
+        details.currA = result.currA;
+        details.currS = result.currS;
+
 
         console.log(details);
         res.render('account', details);
