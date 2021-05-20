@@ -24,9 +24,9 @@ const homeController = {
         details.armOwned = result.armOwned;
         details.weapOwned = result.weapOwned;
         details.shieldOwned = result.shieldOwned;
-        
+
         console.log(details);
-        res.render('account', result);
+        res.render('account', details);
       }
       else {
         res.render('error', details);
@@ -34,7 +34,6 @@ const homeController = {
     });
   },
   changeUsername: function(req, res) {
-
   },
 }
 
