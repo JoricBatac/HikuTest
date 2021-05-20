@@ -14,8 +14,8 @@
       $('#submitPost').click(function() {
         var username = {{{json username}}};
         var profpic = {{{json profpic}}};
-        var title = $('#searchfield').val();
-        var content = $('#forumSubmission').val();
+        var title = $('#title').val();
+        var content = $('#content').val();
 
         if (title === '')
           title = 'No Title';
@@ -28,14 +28,6 @@
           title: title,
           content: content
         };
-        $.get('/postDiscussion', discussion, function(data, status) {
-          if (status == "success") {
-            console.log('Success in adding');
-          }
-          else {
-            console.log('no success in adding');
-          }
-        });
 
         var postContainer = $('<div class="forumpost"></div>');
 
@@ -113,11 +105,12 @@
         <input type="button" id="searchbutton" onClick="searchText();" value="Search">
       </div>
       <div id="createpost">
-        <form id="discinput">
-          <input type="text" name="title" id="searchfield" placeholder="Title">
-          <textarea placeholder="Create Discussion" name="content" id="forumSubmission" name="forumSubmission"></textarea>
+        <form id="discinput" method="post">
+          <input type="text" name="profpic" value="{{profpic}}" style="opacity:0;">
+          <input type="text" name="title" id="title" placeholder="Title">
+          <textarea placeholder="Create Discussion" name="content" id="content" name="forumSubmission"></textarea>
+          <input type="submit" name="submitPost" id="submitPost" value="SUBMIT">
         </form>
-        <input type="button" name="submitPost" id="submitPost" value="SUBMIT">
       </div>
       <div id="otherforumactions">
         <a href="/battle/{{name}}"><div class="forumactions" id="reqbattle">Battle!</div></a>
