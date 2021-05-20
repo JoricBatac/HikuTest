@@ -98,59 +98,12 @@ armSStat[4] = {
   val : -50
 };
 
-function loadoutChange(slot, order) {
-  switch (slot) {
-    case 1:
-      if (order == 1) {
-        if (currChar != charOwned.length - 1) currChar += 1;
-        else currChar = 0;
-      }
-      else {
-        if (currChar != 0) currChar -= 1;
-        else currChar = charNames.length - 1;
-      }
-      document.getElementById("charName").innerHTML = charNames[currChar];
-      break;
-    case 2:
-      if (order == 1) {
-        if (currWeapon != weaponNames.length - 1) currWeapon += 1;
-        else currWeapon = 0;
-      }
-      else {
-        if (currWeapon != 0) currWeapon -= 1;
-        else currWeapon = weaponNames.length - 1;
-      }
-      document.getElementById("weaponName").innerHTML = weaponNames[currWeapon];
-      break;
-    case 3:
-      if (order == 1) {
-        if (currShield != shieldNames.length - 1) currShield += 1;
-        else currShield = 0;
-      }
-      else {
-        if (currShield != 0) currShield -= 1;
-        else currShield = shieldNames.length - 1;
-      }
-      document.getElementById("shieldName").innerHTML = shieldNames[currShield];
-      break;
-    case 4:
-      if (order == 1) {
-        if (currArmor != armorNames.length - 1) currArmor += 1;
-        else currArmor = 0;
-      }
-      else {
-        if (currArmor != 0) currArmor -= 1;
-        else currArmor = armorNames.length - 1;
-      }
-      document.getElementById("armorName").innerHTML = armorNames[currArmor];
-      break;
-  }
-  checkStat();
-}
+var weapOwned = [];
+var armOwned = [];
+var shieldOwned = [];
+var charOwned = [];
 
 $(document).ready(function () {
-    $
-
 
     $('#usernameHolder').keyup(function () {
 

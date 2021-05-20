@@ -6,6 +6,126 @@
   <link rel="stylesheet" href="/css/account.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="/js/account.js"></script>
+  <script>
+  	var currChar = {{{json currC}}};
+  	var currWeapon = {{{json currW}}};
+  	var currArmor = {{{json currA}}};
+  	var currShield = {{{json currS}}};
+
+  	var weapOwned = [];
+	var armOwned = [];
+	var shieldOwned = [];
+	var charOwned = []; 
+
+	charOwned = {{{json charOwned}}};
+	armOwned = {{{json armOwned}}};
+	shieldOwned = {{{json shieldOwned}}};
+	weapOwned = {{{json weapOwned}}};
+
+		function start(){
+		  document.getElementById("charName").innerHTML = charNames[currChar];
+		  document.getElementById("weaponName").innerHTML = weaponNames[currWeapon];
+		  document.getElementById("shieldName").innerHTML = shieldNames[currShield];
+		  document.getElementById("armorName").innerHTML = armorNames[currArmor];
+		  checkStat();
+		}
+		function loadoutChange(slot, order) {
+		  switch (slot) {
+		    case 1:
+		      if (order == 1) {
+		        if (currChar != charOwned.length - 1) currChar += 1;
+		        else currChar = 0;
+		      }
+		      else {
+		        if (currChar != 0) currChar -= 1;
+		        else currChar = charOwned.length - 1;
+		      }
+		      document.getElementById("charName").innerHTML = charNames[charOwned[currChar]];
+		      break;
+		    case 2:
+		      if (order == 1) {
+		        if (currWeapon != weapOwned.length - 1) currWeapon += 1;
+		        else currWeapon = 0;
+		      }
+		      else {
+		        if (currWeapon != 0) currWeapon -= 1;
+		        else currWeapon = weapOwned.length - 1;
+		      }
+		      document.getElementById("weaponName").innerHTML = weaponNames[weapOwned[currWeapon]];
+		      break;
+		    case 3:
+		      if (order == 1) {
+		        if (currShield != shieldOwned.length - 1) currShield += 1;
+		        else currShield = 0;
+		      }
+		      else {
+		        if (currShield != 0) currShield -= 1;
+		        else currShield = shieldOwned.length - 1;
+		      }
+		      document.getElementById("shieldName").innerHTML = shieldNames[shieldOwned[currShield]];
+		      break;
+		    case 4:
+		      if (order == 1) {
+		        if (currArmor != armOwned.length - 1) currArmor += 1;
+		        else currArmor = 0;
+		      }
+		      else {
+		        if (currArmor != 0) currArmor -= 1;
+		        else currArmor = armOwned.length - 1;
+		      }
+		      document.getElementById("armorName").innerHTML = armorNames[armOwned[currArmor]];
+		      break;
+		  }
+		  checkStat();
+		}
+		function checkStat() {
+		  var att = charStat[charOwned[currChar]].att;
+		  var def = charStat[charOwned[currChar]].def;
+		  var hp = charStat[charOwned[currChar]].hp;
+
+		  var attadd = weapMStat[weapOwned[currWeapon]];
+		  var defadd = armMStat[armOwned[currArmor]] + shieldMStat[shieldOwned[currShield]];
+		  var hpadd = 0;
+
+		  if(armSStat[armOwned[currArmor]].type == "att"){
+		    attadd += armSStat[armOwned[currArmor]].val;
+		  }
+		  else if(armSStat[armOwned[currArmor]].type == "def"){
+		    defadd += armSStat[armOwned[currArmor]].val;
+		  }
+		  else if(armSStat[armOwned[currArmor]].type == "hp"){
+		    hpadd += armSStat[armOwned[currArmor]].val;
+		  }
+
+		  if(weapSStat[weapOwned[currWeapon]].type == "att"){
+		    attadd += weapSStat[weapOwned[currWeapon]].val;
+		  }
+		  else if(weapSStat[weapOwned[currWeapon]].type == "def"){
+		    defadd += weapSStat[weapOwned[currWeapon]].val;
+		  }
+		  else if(weapSStat[weapOwned[currWeapon]].type == "hp"){
+		    hpadd += weapSStat[weapOwned[currWeapon]].val;
+		  }
+
+		  if(shieldSStat[shieldOwned[currShield]].type == "att"){
+		    attadd += shieldSStat[shieldOwned[currShield]].val;
+		  }
+		  else if(shieldSStat[shieldOwned[currShield]].type == "def"){
+		    defadd += shieldSStat[shieldOwned[currShield]].val;
+		  }
+		  else if(shieldSStat[shieldOwned[currShield]].type == "hp"){
+		    hpadd += shieldSStat[shieldOwned[currShield]].val;
+		  }
+
+		  document.getElementById("hp").innerHTML = hp;
+		  document.getElementById("att").innerHTML = att;
+		  document.getElementById("def").innerHTML = def;
+
+		  document.getElementById("attadd").innerHTML = attadd;
+		  document.getElementById("defadd").innerHTML = defadd;
+		  document.getElementById("hpadd").innerHTML = hpadd;
+		}
+  </script>
 </head>
 <body onload = "start()">
 	{{> header username=username}}

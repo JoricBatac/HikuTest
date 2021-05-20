@@ -6,7 +6,7 @@ const homeController = {
   getAccount: function(req, res) {
     var query = {username: req.params.username};
 
-    var projection = 'username armOwned weapOwned shieldOwned currC currW currA currS';
+    var projection = 'username charOwned armOwned weapOwned shieldOwned currC currW currA currS';
 
     var details = {};
 
@@ -21,6 +21,7 @@ const homeController = {
     db.findOne(User, query, projection, function(result) {
       if (result != null) {
         details.username = result.username;
+        details.charOwned = result.charOwned;
         details.armOwned = result.armOwned;
         details.weapOwned = result.weapOwned;
         details.shieldOwned = result.shieldOwned;
