@@ -54,11 +54,11 @@ const forumController = {
     });
   },
 
-  getAddDiscussion: function(req, res) {
-    var username = req.query.username;
-    var profpic = req.query.profpic;
-    var title = req.query.title;
-    var content = req.query.content;
+  postDiscussion: function(req, res) {
+    var username = req.session.username;
+    var profpic = parseInt(req.body.profpic);
+    var title = req.body.title;
+    var content = req.body.content;
     var discussion = {
       username: username,
       profpic: profpic,
@@ -66,7 +66,7 @@ const forumController = {
       content: content,
       rating: 0
     };
-
+    console.log(discussion);
     db.insertOne(ForumDiscussion, discussion, function(flag) {
       if (flag) {
         console.log('Added ' + discussion.title);
@@ -98,7 +98,7 @@ const forumController = {
         details.title = result.title;
         details.content = result.content;
         details.rating = result.rating;
-        
+
         var date = new Date(result.postedAt);
         details.postedAt = moment(date).fromNow();
 

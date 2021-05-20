@@ -37,7 +37,7 @@ app.get('/home/:username', homeController.getHome);
 app.get('/account/:username', accountController.getAccount);
 
 app.get('/forum/:username', forumController.getForum);
-app.get('/postDiscussion', forumController.getAddDiscussion);
+app.post('/forum/:username', forumController.postDiscussion);
 app.get('/forum/post/:postID', forumController.getForumPost);
 //app.get('/likePost', forumController.getLikePost);
 
