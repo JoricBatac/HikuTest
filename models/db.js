@@ -62,7 +62,7 @@ const database = {
       });
   },
 
-  updateMany: function(model, filter, update) {
+  updateMany: function(model, filter, update, callback) {
       model.updateMany(filter, update, function(error, result) {
           if(error) return callback(false);
           console.log('Documents modified: ' + result.nModified);

@@ -45,6 +45,9 @@ app.get('/forum/post/:postID', forumpostController.getForumPost);
 app.post('/forum/post/:postID', forumpostController.postComment);
 
 app.post('/changeUsername', accountController.changeUsername);
+app.post('/changePassword', accountController.changePassword);
+app.post('/changeStatus', accountController.changeStatus);
+app.post('/updateCurr', accountController.updateCurr)
 //app.get('/likePost', forumController.getLikePost);
 
 module.exports = app;

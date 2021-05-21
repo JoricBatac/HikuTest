@@ -45,6 +45,18 @@ var UserSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
+    currAtt: {
+        type: Number,
+        required: false
+    },
+    currHp: {
+        type: Number,
+        required: false
+    }
+    currDef: {
+        type: Number,
+        required: false
+    }
     task: {
     //end date
         type: Date,
