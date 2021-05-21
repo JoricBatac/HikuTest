@@ -56,64 +56,38 @@ const forumController = {
 
   postDiscussion: function(req, res) {
     var username = req.session.username;
-    var profpic = parseInt(req.body.profpic);
-    var title = req.body.title;
-    var content = req.body.content;
-    var discussion = {
-      username: username,
-      profpic: profpic,
-      title: title,
-      content: content,
-      rating: 0
-    };
-    console.log(discussion);
-    db.insertOne(ForumDiscussion, discussion, function(flag) {
-      if (flag) {
-        console.log('Added ' + discussion.title);
-      }
-    });
-  },
-
-  getForumPost: function(req, res) {
-
-    var query = {postID: req.params.postID};
-
-    var projection = 'username profpic postID postedAt title content rating';
-
     var details = {};
-
-    if (req.session.username) {
-      details.flag = true;
-      details.name = req.session.username;
-    }
-    else {
-      details.flag = false;
-    }
-
-    db.findOne(ForumDiscussion, query, projection, function(result) {
+    db.findOne(User, {username: username}, '', function(result) {
       if (result != null) {
-        details.username = result.username;
         details.profpic = result.profpic;
-        details.postID = result.postID;
-        details.title = result.title;
-        details.content = result.content;
-        details.rating = result.rating;
 
-        var date = new Date(result.postedAt);
-        details.postedAt = moment(date).fromNow();
-
-        res.render('forumpost', details);
+        var profpic = details.profpic;
+        var title = req.body.title;
+        if (title == '')
+          title = 'No Title';
+        var content = req.body.content;
+        if (content == '')
+          content = 'No Content';
+        var discussion = {
+          username: username,
+          profpic: profpic,
+          title: title,
+          content: content,
+          comments: [],
+          rating: 0,
+        };
+        db.insertOne(ForumDiscussion, discussion, function(flag) {
+          if (flag) {
+            console.log('Added ' + discussion.title);
+            res.redirect('/forum/' + username);
+          }
+        });
       }
       else {
         res.render('error', details);
       }
     });
   }
-
-  /*
-  getLikePost: function(req, res) {
-    db.updateOne(ForumDiscussion, )
-  }*/
 }
 
 module.exports = forumController;

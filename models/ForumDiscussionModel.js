@@ -27,7 +27,25 @@ var forumDiscussionSchema = new mongoose.Schema({
     },
     rating: {
         type: Number
-    }
+    },
+    comments: [{
+      username: {
+          type: String,
+      },
+      profpic: {
+          type: Number,
+      },
+      repliedAt: {
+          type: Date,
+          default: Date.now
+      },
+      comment: {
+          type: String
+      },
+      rating: {
+          type: Number
+      }
+    }]
     /*   schema within a schema?
     comments: [{
         type:

@@ -43,13 +43,17 @@
 
     <!-- Reply -->
     <div id="submitreplysection">
-      <form id="replyinput">
-      <textarea placeholder="Comment Reply..." id="replysubmission" name="replysubmission"></textarea>
+      <form id="replyinput" method="post">
+        <textarea placeholder="Comment Reply..." id="replysubmission" name="replysubmission"></textarea>
+        <input type="submit" name="submitbutton" id="submitbutton" value="Comment">
       </form>
-      <input type="button" id="submitbutton" onClick="submitText();" value="Comment">
     </div>
 
-
+    <div class="repliessection" id="replylist">
+      {{#each replies}}
+        {{> replycard}}
+      {{/each}}
+    </div>
   </div>
 </body>
 </html>

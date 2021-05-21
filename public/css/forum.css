@@ -46,7 +46,7 @@
 	background-color: #eceff4;
   font-size: 17px;
 	height: 20px;
-	width: 75%;
+	width: 98%;
 }
 
 #searchbutton {
@@ -75,7 +75,7 @@
 	border-radius: 8px;
 }
 
-#submitButton {
+#submitPost {
 	margin-left: .7%;
 	width: 98%;
 	height: 35px;

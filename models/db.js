@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 const User = require('./UserModel.js');
 const ForumDiscussion = require('./ForumDiscussionModel.js');
 
+//const dotenv = require('dotenv');
+//dotenv.config();
+//const url = process.env.DB_URL;//'mongodb://localhost:27017/hiku-rework';
 const url = 'mongodb://localhost:27017/hiku-rework';
 
 const options = {
@@ -51,7 +54,7 @@ const database = {
       });
   },
 
-  updateOne: function(model, filter, update) {
+  updateOne: function(model, filter, update, callback) {
       model.updateOne(filter, update, function(error, result) {
           if(error) return callback(false);
           console.log('Document modified: ' + result.nModified);

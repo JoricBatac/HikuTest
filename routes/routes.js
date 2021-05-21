@@ -14,6 +14,8 @@ const accountController = require('../controllers/accountController.js');
 
 const forumController = require('../controllers/forumController.js');
 
+const forumpostController = require('../controllers/forumpostController.js');
+
 const validation = require('../helpers/validation.js');
 
 const app = express();
@@ -38,7 +40,9 @@ app.get('/account/:username', accountController.getAccount);
 
 app.get('/forum/:username', forumController.getForum);
 app.post('/forum/:username', forumController.postDiscussion);
-app.get('/forum/post/:postID', forumController.getForumPost);
+
+app.get('/forum/post/:postID', forumpostController.getForumPost);
+app.post('/forum/post/:postID', forumpostController.postComment);
 //app.get('/likePost', forumController.getLikePost);
 
 module.exports = app;

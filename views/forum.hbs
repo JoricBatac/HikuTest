@@ -10,7 +10,7 @@
   <script>
 
     $(document).ready(function() {
-
+      /*
       $('#submitPost').click(function() {
         var username = {{{json username}}};
         var profpic = {{{json profpic}}};
@@ -75,10 +75,8 @@
         $('#searchfield').val('');
         $('#forumSubmission').val('');
       });
+      */
 
-      $('#forumlist').on('click', '#likebtn', function() {
-
-      });
     });
   </script>
 </head>
@@ -104,14 +102,15 @@
         <input type="text" placeholder="Search Forum...">
         <input type="button" id="searchbutton" onClick="searchText();" value="Search">
       </div>
+
       <div id="createpost">
         <form id="discinput" method="post">
-          <input type="text" name="profpic" value="{{profpic}}" style="opacity:0;">
           <input type="text" name="title" id="title" placeholder="Title">
           <textarea placeholder="Create Discussion" name="content" id="content" name="forumSubmission"></textarea>
           <input type="submit" name="submitPost" id="submitPost" value="SUBMIT">
         </form>
       </div>
+
       <div id="otherforumactions">
         <a href="/battle/{{name}}"><div class="forumactions" id="reqbattle">Battle!</div></a>
         <p class="actiondesc">Request assistance or challenge!</p>
