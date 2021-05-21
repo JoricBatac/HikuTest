@@ -46,6 +46,8 @@ const homeController = {
       db.updateOne(users, {username: username}, { $set: {username: new_username} }, function (flag) {
       if (flag) {
         console.log('usernameChanged');
+        req.session.username = new_username;
+        res.redirect('/account/' + new_username);
       }
       else{
         console.log(flag);
@@ -68,7 +70,7 @@ const homeController = {
   changeStatus: function(req, res) {
     var username = req.session.username;
     var new_status = req.body.new_status;
-    if(username == req.params.username)
+    
       db.updateOne(users, {username: username}, { $set: {status: new_status} }, function (flag) {
       if (flag) {
         console.log('statusChanged');
@@ -77,16 +79,18 @@ const homeController = {
         console.log(flag);
       }
     });    
-  }
+  },
   updateCurr: function(req, res) {
     var username = req.session.username;
     var currS = req.body.currS;
     var currA = req.body.currA;
     var currW = req.body.currW;
     var currC = req.body.currC;
+    var currAtt = req.body.currAtt;
+    var currHp = req.body.currHp;
+    var currDef = req.body.currDef;
 
-    if(username == req.params.username)
-      db.updateMany(users, {username: username}, { $set: {currC: currC , currA: currA , currW : currW , currS : currS} }, function (flag) {
+    db.updateMany(users, {username: username}, { $set: {currC: currC , currA:currA , currW:currW , currS:currS , currAtt:currAtt , currDef:currDef , currHp:currHp } }, function (flag) {
       if (flag) {
         console.log('statusChanged');
       }

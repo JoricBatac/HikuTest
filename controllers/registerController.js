@@ -64,7 +64,10 @@ const registerController = {
           currW: 0,
           currS: 0,
           currA: 0,
-          currC: 0
+          currC: 0,
+          currAtt: 0,
+          currDef: 0,
+          currHp: 0
         }
         db.insertOne(User, user, function(flag) {
           console.log(flag);

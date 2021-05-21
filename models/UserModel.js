@@ -52,11 +52,11 @@ var UserSchema = new mongoose.Schema({
     currHp: {
         type: Number,
         required: false
-    }
+    },
     currDef: {
         type: Number,
         required: false
-    }
+    },
     task: {
     //end date
         type: Date,

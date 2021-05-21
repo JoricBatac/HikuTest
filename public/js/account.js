@@ -177,7 +177,7 @@ $(document).ready(function () {
         }
     });
     $('#loadoutHead').click(function () {
-        $('#loadoutBox').css('height', '585px');
+        $('#loadoutBox').css('height', '800px');
         $('#loadoutBox').css('opacity', '1');
         if($('#loadoutBox').height() > 60){
             $('#loadoutBox').css('height', '60px');

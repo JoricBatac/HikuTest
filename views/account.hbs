@@ -79,10 +79,10 @@
 		  checkStat();
 		}
 		function checkStat() {
-		document.getElementById("currC").innerHTML = currChar;
-		document.getElementById("currS").innerHTML = currShield;
-		document.getElementById("currA").innerHTML = currArmor;
-		document.getElementById("currW").innerHTML = currWeapon;
+		document.getElementById("currC").value = currChar;
+		document.getElementById("currS").value = currShield;
+		document.getElementById("currA").value = currArmor;
+		document.getElementById("currW").value = currWeapon;
 
 		  var att = charStat[charOwned[currChar]].att;
 		  var def = charStat[charOwned[currChar]].def;
@@ -129,6 +129,10 @@
 		  document.getElementById("attadd").innerHTML = attadd;
 		  document.getElementById("defadd").innerHTML = defadd;
 		  document.getElementById("hpadd").innerHTML = hpadd;
+
+		  document.getElementById("currAtt").value = att+attadd;
+		  document.getElementById("currHp").value = hp+hpadd;
+		  document.getElementById("currDef").value = def+defadd;
 		}
   </script>
 </head>
@@ -142,26 +146,22 @@
 			<hr>
 			<input type="text" name="new_username" value="{{username}}" id="usernameHolder">
 			<div id="error" style="color:#FF6A55"></div>
-			<button onClick="nameChange();" class="bottombutton" id="changeUsername">Change Username</button>
+			<button type="submit" onClick="nameChange();" class="bottombutton" id="changeUsername">Change Username</button>
 		</div>
 	</form>
-	<form method="post" action="/changePassword">
 		<div class="settingbox" id="passwordBox">
 			<div class="headertext" name="new_password" id="passHead">Password</div>
 			<hr>
 			<input type="password">
-			<button onClick="passChange();" class="bottombutton" id="changePassword">Change Password</button>
+			<button type="submit" onClick="passChange();" class="bottombutton" id="changePassword">Change Password</button>
 		</div>
-	</form>
-	<form method="post" action="/changeStatus" style="margin-right:auto;">
 		<div class="settingbox" id="statusBox" style="margin-right:auto;">
 			<div class="headertext" id="statHead">Status</div>
 			<hr>
 			<input type="text" name="new_status">
-			<button onClick="statusChange();" class="bottombutton" id="changeStatus">Change Status</button>
+			<button type="submit" onClick="statusChange();" class="bottombutton" id="changeStatus">Change Status</button>
 			</div>
 		</div>
-	</form>
 </div>
 <div class="loadoutbox" id="loadoutBox" style="margin-bottom: 50px">
 	<div class="headertext" id="loadoutHead"> Loadout </div>
@@ -214,7 +214,15 @@
 		</div>
 		<div class="rowcontainer" style="margin-bottom: 10px">
 			<form method="post" style="margin:auto" action="updateCurr">
-				<input style="height:0" name="currC" id="currC">
+				<button onClick="statusChange();" class="bottombutton" id="changeStatus">Set Active Character</button>
+				<input style="visibility:hidden" name="currC" id="currC">
+				<input style="visibility:hidden" name="currS" id="currS">
+				<input style="visibility:hidden" name="currA" id="currA">
+				<input style="visibility:hidden" name="currW" id="currW">
+				<input style="visibility:hidden" name="currAtt" id="currAtt">
+				<input style="visibility:hidden" name="currHp" id="currHp">
+				<input style="visibility:hidden" name="currDef" id="currDef">	
+							
 			</form>
 		</div>
 </div>
