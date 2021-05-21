@@ -43,6 +43,8 @@ app.post('/forum/:username', forumController.postDiscussion);
 
 app.get('/forum/post/:postID', forumpostController.getForumPost);
 app.post('/forum/post/:postID', forumpostController.postComment);
+
+app.post('/changeUsername', accountController.changeUsername);
 //app.get('/likePost', forumController.getLikePost);
 
 module.exports = app;

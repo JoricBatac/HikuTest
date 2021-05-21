@@ -131,13 +131,15 @@
 	{{> header username=username}}
 
   <div class="rowcontainer" style="margin-top: 70px">
-	<div class="settingbox" id="usernameBox" style="margin-left:auto;">
-		<div class="headertext" id="userHead">Username</div>
-		<hr>
-		<input type="text" value="{{username}}" id="usernameHolder">
-		<div id="error" style="color:#FF6A55"></div>
-		<button onClick="nameChange();" class="bottombutton" id="changeUsername">Change Username</button>
-	</div>
+  	<form method="post" action="/changeUsername" style="margin-left:auto">
+		<div class="settingbox" id="usernameBox" style="margin-left:auto;">
+			<div class="headertext" id="userHead">Username</div>
+			<hr>
+			<input type="text" name="new_username" value="{{username}}" id="usernameHolder">
+			<div id="error" style="color:#FF6A55"></div>
+			<button onClick="nameChange();" class="bottombutton" id="changeUsername">Change Username</button>
+		</div>
+	</form>
 	<div class="settingbox" id="passwordBox">
 		<div class="headertext" id="passHead">Password</div>
 		<hr>

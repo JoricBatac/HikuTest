@@ -40,6 +40,17 @@ const homeController = {
     });
   },
   changeUsername: function(req, res) {
+    var username = req.session.username;
+    var new_username = req.body.new_username;
+
+    db.updateOne(users, {username: username}, { $set: {username: new_username} }, function (flag) {
+      if (flag) {
+        console.log('usernameChanged');
+      }
+      else{
+        console.log(flag);
+      }
+    });
   },
 }
 
