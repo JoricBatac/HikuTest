@@ -42,17 +42,20 @@ const homeController = {
   changeUsername: function(req, res) {
     var username = req.session.username;
     var new_username = req.body.new_username;
-    if(username == req.params.username)
-      db.updateOne(users, {username: username}, { $set: {username: new_username} }, function (flag) {
-      if (flag) {
-        console.log('usernameChanged');
-        req.session.username = new_username;
-        res.redirect('/account/' + new_username);
-      }
-      else{
-        console.log(flag);
-      }
-    });    
+    console.log('a');
+    //if(username == req.params.username) {
+      console.log('b');
+      db.updateOne(User, {username: username}, { $set: {username: new_username} }, function (flag) {
+        if (flag) {
+          console.log('usernameChanged');
+          req.session.username = new_username;
+          res.redirect('/account/' + new_username);
+        }
+        else{
+          console.log(flag);
+        }
+      });
+    //}
   },
   changePassword: function(req, res) {
     var username = req.session.username;
@@ -65,12 +68,12 @@ const homeController = {
       else{
         console.log(flag);
       }
-    });    
+    });
   },
   changeStatus: function(req, res) {
     var username = req.session.username;
     var new_status = req.body.new_status;
-    
+
       db.updateOne(users, {username: username}, { $set: {status: new_status} }, function (flag) {
       if (flag) {
         console.log('statusChanged');
@@ -78,7 +81,7 @@ const homeController = {
       else{
         console.log(flag);
       }
-    });    
+    });
   },
   updateCurr: function(req, res) {
     var username = req.session.username;
@@ -97,7 +100,7 @@ const homeController = {
       else{
         console.log(flag);
       }
-    });    
+    });
   }
 }
 

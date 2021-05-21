@@ -54,6 +54,11 @@ hbs.registerHelper('json', function (content) {
 hbs.registerHelper('bold', function (content) {
   return '<b>' + content.fn(this) + '</b>';
 });
+hbs.registerHelper('linebreaks', function (content) {
+  content = hbs.Utils.escapeExpression(content);
+  content = content.replace(/(\r\n|\n|\r)/gm, '<br>');
+  return new hbs.SafeString(content);;
+});
 
 app.listen(port, hostname, function() {
   console.log('Server is running at:');

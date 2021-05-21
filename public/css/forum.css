@@ -254,6 +254,7 @@
   max-height: 200px;
   overflow-y: scroll;
 	white-space: pre-wrap;
+	overflow-wrap: break-word;
 }
 
 .forumdetails {

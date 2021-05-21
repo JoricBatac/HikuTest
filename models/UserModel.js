@@ -61,7 +61,9 @@ var UserSchema = new mongoose.Schema({
     //end date
         type: Date,
         required: false
-    }
+    },
+    likedPosts: [{type: mongoose.Schema.Types.ObjectId}],
+    dislikedPosts: [{type: mongoose.Schema.Types.ObjectId}]
 });
 
 module.exports = mongoose.model('User', UserSchema);

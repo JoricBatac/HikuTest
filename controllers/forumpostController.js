@@ -48,8 +48,7 @@ const forumpostController = {
               result.comments[i].repliedAt = moment(date).fromNow();
             }
             details.replies = result.comments;
-            details.replies.reverse();
-            console.log(result.comments);
+            //details.replies.reverse();
             res.render('forumpost', details);
           }
         });
