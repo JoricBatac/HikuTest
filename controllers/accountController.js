@@ -2,6 +2,9 @@ const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 const homeController = {
   getAccount: function(req, res) {
     var query = {username: req.params.username};
@@ -60,21 +63,25 @@ const homeController = {
   changePassword: function(req, res) {
     var username = req.session.username;
     var new_password = req.body.new_password;
-    if(username == req.params.username)
-      db.updateOne(users, {username: username}, { $set: {password: new_password} }, function (flag) {
-      if (flag) {
-        console.log('passwordChanged');
-      }
-      else{
-        console.log(flag);
-      }
+    //if(username == req.params.username)
+    bcrypt.hash(new_password, saltRounds, function(err, hash){
+      new_password = hash;
+    
+      db.updateOne(User, {username: username}, { $set: {password: new_password} }, function (flag) {
+        if (flag) {
+          console.log('passwordChanged');
+        }
+        else{
+          console.log(flag);
+        }
+      });
     });
   },
   changeStatus: function(req, res) {
     var username = req.session.username;
     var new_status = req.body.new_status;
 
-      db.updateOne(users, {username: username}, { $set: {status: new_status} }, function (flag) {
+      db.updateOne(User, {username: username}, { $set: {status: new_status} }, function (flag) {
       if (flag) {
         console.log('statusChanged');
       }
@@ -93,9 +100,10 @@ const homeController = {
     var currHp = req.body.currHp;
     var currDef = req.body.currDef;
 
-    db.updateMany(users, {username: username}, { $set: {currC: currC , currA:currA , currW:currW , currS:currS , currAtt:currAtt , currDef:currDef , currHp:currHp } }, function (flag) {
+    db.updateMany(User, {username: username}, { $set: {currC: currC , currA:currA , currW:currW , currS:currS , currAtt:currAtt , currDef:currDef , currHp:currHp } }, function (flag) {
       if (flag) {
-        console.log('statusChanged');
+        console.log('updated many');
+        res.redirect('/account/' + username);
       }
       else{
         console.log(flag);

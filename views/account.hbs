@@ -15,7 +15,7 @@
   	var weapOwned = [];
 	var armOwned = [];
 	var shieldOwned = [];
-	var charOwned = [];
+	var charOwned = []; 
 
 	charOwned = {{{json charOwned}}};
 	armOwned = {{{json armOwned}}};
@@ -23,10 +23,10 @@
 	weapOwned = {{{json weapOwned}}};
 
 		function start(){
-		  document.getElementById("charName").innerHTML = charNames[currChar];
-		  document.getElementById("weaponName").innerHTML = weaponNames[currWeapon];
-		  document.getElementById("shieldName").innerHTML = shieldNames[currShield];
-		  document.getElementById("armorName").innerHTML = armorNames[currArmor];
+		  document.getElementById("charName").innerHTML = charNames[charOwned[currChar]];
+		  document.getElementById("weaponName").innerHTML = weaponNames[weapOwned[currWeapon]];
+		  document.getElementById("shieldName").innerHTML = shieldNames[shieldOwned[currShield]];
+		  document.getElementById("armorName").innerHTML = armorNames[armOwned[currArmor]];
 		  checkStat();
 		}
 		function loadoutChange(slot, order) {
@@ -149,12 +149,15 @@
 			<button type="submit" onClick="nameChange();" class="bottombutton" id="changeUsername">Change Username</button>
 		</div>
 	</form>
+	<form method="post" action="/changePassword">
 		<div class="settingbox" id="passwordBox">
-			<div class="headertext" name="new_password" id="passHead">Password</div>
+			<div class="headertext" id="passHead">Password</div>
 			<hr>
-			<input type="password">
+			<input type="password" name="new_password">
 			<button type="submit" onClick="passChange();" class="bottombutton" id="changePassword">Change Password</button>
 		</div>
+	</form>
+	<form method="post" action="/changeStatus" style="margin-right:auto;">
 		<div class="settingbox" id="statusBox" style="margin-right:auto;">
 			<div class="headertext" id="statHead">Status</div>
 			<hr>
@@ -162,6 +165,7 @@
 			<button type="submit" onClick="statusChange();" class="bottombutton" id="changeStatus">Change Status</button>
 			</div>
 		</div>
+	</form>
 </div>
 <div class="loadoutbox" id="loadoutBox" style="margin-bottom: 50px">
 	<div class="headertext" id="loadoutHead"> Loadout </div>
@@ -213,7 +217,7 @@
 			<div class="charStats" id="defadd" style="background-color:#3b4252; color:#83d4ab"></div>
 		</div>
 		<div class="rowcontainer" style="margin-bottom: 10px">
-			<form method="post" style="margin:auto" action="updateCurr">
+			<form method="post" style="margin:auto" action="/updateCurr">
 				<button onClick="statusChange();" class="bottombutton" id="changeStatus">Set Active Character</button>
 				<input style="visibility:hidden" name="currC" id="currC">
 				<input style="visibility:hidden" name="currS" id="currS">
@@ -221,8 +225,8 @@
 				<input style="visibility:hidden" name="currW" id="currW">
 				<input style="visibility:hidden" name="currAtt" id="currAtt">
 				<input style="visibility:hidden" name="currHp" id="currHp">
-				<input style="visibility:hidden" name="currDef" id="currDef">
-
+				<input style="visibility:hidden" name="currDef" id="currDef">	
+							
 			</form>
 		</div>
 </div>
