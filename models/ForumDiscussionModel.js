@@ -1,5 +1,24 @@
 var mongoose = require('mongoose');
 
+var commentSchema = new mongoose.Schema({
+    username: {
+        type: String,
+    },
+    profpic: {
+        type: Number,
+    },
+    repliedAt: {
+        type: Date,
+        default: Date.now
+    },
+    comment: {
+        type: String
+    },
+    rating: {
+        type: Number
+    }
+});
+
 var forumDiscussionSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -28,6 +47,8 @@ var forumDiscussionSchema = new mongoose.Schema({
     rating: {
         type: Number
     },
+    comments: [commentSchema]
+    /*
     comments: [{
       username: {
           type: String,
@@ -45,7 +66,7 @@ var forumDiscussionSchema = new mongoose.Schema({
       rating: {
           type: Number
       }
-    }]
+    }]*/
     /*   schema within a schema?
     comments: [{
         type:

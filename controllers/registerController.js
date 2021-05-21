@@ -19,9 +19,9 @@ const registerController = {
     else {
       details.flag = false;
     }
-    console.log('waowao');
     res.render('register', details);
   },
+
   postRegister: function(req, res) {
     var errors = validationResult(req);
 
@@ -46,7 +46,7 @@ const registerController = {
     else {
       var username = req.body.username;
       var password = req.body.password;
-      
+
       var img_index = parseInt(req.body.img_index);
 
       bcrypt.hash(password, saltRounds, function(err, hash) {
@@ -75,6 +75,7 @@ const registerController = {
       });
     }
   },
+  
   getCheckUsername: function(req, res) {
     var username = req.query.username;
 

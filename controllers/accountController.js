@@ -43,9 +43,11 @@ const homeController = {
     var username = req.session.username;
     var new_username = req.body.new_username;
 
-    db.updateOne(users, {username: username}, { $set: {username: new_username} }, function (flag) {
+    db.updateOne(User, {username: username}, { $set: {username: new_username} }, function (flag) {
       if (flag) {
         console.log('usernameChanged');
+        req.session.username = new_username;
+        res.redirect('/account/' + new_username);
       }
       else{
         console.log(flag);

@@ -14,7 +14,6 @@ const loginController = {
       var details = {
         flag: false
       };
-      console.log('wew');
       res.render('login', details);
     }
   },

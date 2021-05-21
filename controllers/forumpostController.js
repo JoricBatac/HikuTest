@@ -35,23 +35,21 @@ const forumpostController = {
         var date = new Date(result.postedAt);
         details.postedAt = moment(date).fromNow();
 
-        ForumDiscussion.find({},'comments').exec((err, result) => {
+        ForumDiscussion.findOne({postID: details.postID}, 'comments').exec((err, result) => {
           if (err) {
             console.log('comments load error');
           }
           else {
             result = JSON.stringify(result);
             result = JSON.parse(result);
-            /*
-            for (var i = 0; i < result.length; i++) {
-              var date = new Date(result[i].repliedAt);
-              result[i].repliedAt = moment(date).fromNow();
-            }
-            */
 
-            details.replies = result;
+            for (var i = 0; i < result.comments.length; i++) {
+              var date = new Date(result.comments[i].repliedAt);
+              result.comments[i].repliedAt = moment(date).fromNow();
+            }
+            details.replies = result.comments;
             details.replies.reverse();
-            console.log(result);
+            console.log(result.comments);
             res.render('forumpost', details);
           }
         });
