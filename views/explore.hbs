@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Explore</title>
-  <link rel="stylesheet" type="text/css" media="all" href="explore.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/explore.css">
   <script type="text/javascript">
     function taskAlert() {
       alert("You still have an ongoing task!");
@@ -20,8 +21,10 @@
   </div>
 
   <!--LOCATION 1-->
-  
-  {{> explore_loc }}
+
+    {{#each location}}
+        {{> explore_loc}}
+    {{/each}}
 
   <!--LOCATION 2-->
   
