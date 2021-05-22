@@ -115,6 +115,10 @@
               $('#error').text('Passwords are not the same!');
             }
 
+            else if ($('#img_index').val() === ""){
+              $('#error').text('Select an avatar!');
+            }
+
             else{
               console.log('entering register acc with ');
               console.log(username);
@@ -126,9 +130,7 @@
 
           }
 
-          if ($('#img_index').val() === ""){
-            $('#error').text('no image bruh');
-          }
+
 
           else{
             $('#error').text('Fill up all fields.');
