@@ -1,0 +1,30 @@
+<div class="battlesection">
+  <div class="battleheader">
+    {{bossName}} Lvl. {{level}}
+  </div>
+  <hr>
+  <div class="battlebody">
+    <img src="../images/battle/{{bossImg}}.png" class="mobpic">
+    <div class="battlecontent">
+      <div class="battledesc">
+        {{description}}
+      </div>
+
+      <div class="battleopt">
+        Possible Loot: {{loot}}
+        <div class="buttonopt">
+          <input type="button" class="battlebutton" onclick="taskAlert()" id="solobattle" value="SOLO">
+          <input type="button" class="battlebutton" onclick="taskAlert()" id="teambattle" value="CO-OP (Forum)">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <hr>
+  <div class="battlefooter">
+    <div class="slidecontainer">
+      <input type="range" min="1" max="100" value="1" class="slider" id="durationrange1">
+      <p class="outcome" id="outcome1">{{multiplier}}</p>
+    </div>
+  </div>
+</div>

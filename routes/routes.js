@@ -22,6 +22,8 @@ const tradeController = require('../controllers/tradeController.js');
 
 const validation = require('../helpers/validation.js');
 
+const battleController = require('../controllers/battleController.js');
+
 const app = express();
 
 app.get('/favicon.ico', controller.getFavicon);
@@ -65,5 +67,7 @@ app.post('/changeUsername', accountController.changeUsername);
 app.post('/changePassword', accountController.changePassword);
 app.post('/changeStatus', accountController.changeStatus);
 app.post('/updateCurr', accountController.updateCurr)
+
+app.get('/battle/:username', battleController.getBattle);
 
 module.exports = app;

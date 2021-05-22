@@ -53,7 +53,7 @@ const tradeController = {
     var itemName = req.body.itemName;
     var itemType = req.body.itemType;
     var itemIndex = req.body.itemIndex;
-    
+
     var offer = {
       username : username,
       item : itemName,
@@ -112,17 +112,17 @@ const tradeController = {
     db.insertOne(Trade, trade, function(flag) {
         console.log(flag);
         if (flag) {
-          console.log('trade posted'); 
+          console.log('trade posted');
         }
       });
   },
   acceptTrade: function(req, res) {
-    var username = req.query.username;
-    var usernameOfferer = req.query.usernameOfferer;
-    var itemType = req.query.itemType;
-    var itemIndex = req.query.itemIndex;
-    var offerType = req.query.offerType;
-    var offerIndex = req.query.offerIndex;
+    var username = req.body.username;
+    var usernameOfferer = req.body.usernameOfferer;
+    var itemType = req.body.itemType;
+    var itemIndex = req.body.itemIndex;
+    var offerType = req.body.offerType;
+    var offerIndex = req.body.offerIndex;
     console.log('hallo');
         db.deleteOne(Trade, {username:username}, (err,result) => {
             if(err) {
