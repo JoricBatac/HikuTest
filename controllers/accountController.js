@@ -45,20 +45,18 @@ const homeController = {
   changeUsername: function(req, res) {
     var username = req.session.username;
     var new_username = req.body.new_username;
-    console.log('a');
-    //if(username == req.params.username) {
-      console.log('b');
-      db.updateOne(User, {username: username}, { $set: {username: new_username} }, function (flag) {
-        if (flag) {
-          console.log('usernameChanged');
-          req.session.username = new_username;
-          res.redirect('/account/' + new_username);
-        }
-        else{
-          console.log(flag);
-        }
-      });
-    //}
+
+    db.updateOne(User, {username: username}, { $set: {username: new_username} }, function (flag) {
+      if (flag) {
+        console.log('usernameChanged');
+        req.session.username = new_username;
+        res.redirect('/account/' + new_username);
+      }
+      else{
+        console.log(flag);
+      }
+    });
+
   },
   changePassword: function(req, res) {
     var username = req.session.username;

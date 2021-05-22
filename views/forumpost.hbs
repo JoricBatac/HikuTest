@@ -6,7 +6,48 @@
   <link rel="stylesheet" href="/css/forumposts.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script>
+    $(document).ready(function() {
+      $('#like').on('click', function () {
+        var postID = $(this).siblings('#postID').text();
+        $.post('/likePost', { postID: postID }, function(result) {
+          console.log(result);
+        });
+        $.get('/updatePostRating', { postID: postID }, function(result) {
+          //console.log(result.rating);
+          document.location.reload(true);
+        });
+      });
 
+      $('#dislike').on('click', function () {
+        var postID = $(this).siblings('#postID').text();
+        $.post('/dislikePost', { postID: postID }, function(result) {
+          console.log(result);
+        });
+        $.get('/updatePostRating', { postID: postID }, function(result) {
+          //console.log(result.rating);
+          document.location.reload(true);
+        });
+      });
+
+      /*
+      $('#replylist').on('click', '#like', function() {
+        var postID = {{{json postID}}};
+        var commentID = $(this).siblings('#commentID').text();
+        $.post('/likeComment', { postID: postID, commentID: commentID }, function(result) {
+          console.log(result);
+        });
+        $.get('/updatePostRating', { postID: postID, commentID: commentID }, function(result) {
+          //console.log(result.rating);
+          document.location.reload(true);
+        });
+      });
+
+      $('#replylist').on('click', '#dislike', function() {
+
+      });
+      */
+
+    });
   </script>
 </head>
 <body>
@@ -23,7 +64,7 @@
       <div class="postheadercontent">
         {{~username~}} <span style="color:grey"> • Posted {{postedAt}}</span>
       </div>
-      <a class="edit">edit</a>
+      <!--<a class="edit">edit</a>-->
     </div>
     <div class="mainpost">
 
@@ -35,8 +76,9 @@
       </p>
       <div class="mainpostfooter">
         <input id="dislike" class="forumreax" type="image" src="/images/dislike.png">
-        <p class="forumreaxcnt">{{rating}}</p>
+        <p id="postRating" class="forumreaxcnt">{{rating}}</p>
         <input type="image" id="like" class="forumreax" src="/images/like.png">
+        <p id="postID" style="visibility: hidden"> {{~postID}}</p>
       </div>
 
     </div>

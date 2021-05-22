@@ -16,6 +16,11 @@ var commentSchema = new mongoose.Schema({
     },
     rating: {
         type: Number
+    },
+    commentID: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: mongoose.Types.ObjectId,
+        index: { unique: true }
     }
 });
 

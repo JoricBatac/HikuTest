@@ -20,10 +20,16 @@
     </a>
 
     <div class="forumpostfooter">
-      <input id="dislikebtn" class="forumreax" type="image" src="../images/dislike.png">
+      <input id="dislikebtn" class="dislikereax" type="image" src="../images/dislike.png">
       <p class="forumreaxcnt">{{rating}}</p>
-      <input id="likebtn" class="forumreax" type="image" src="../images/like.png">
-      <p class="forumcommentcnt"></p>
+      <input id="likebtn" class="likereax" type="image" src="../images/like.png">
+      <p class="forumcommentcnt">
+        {{#if comments.length}}
+          {{comments.length}} Comments
+        {{/if}}
+      </p>
+      <p id="postID" style="visibility: hidden"> {{~postID}}</p>
+
     </div>
   </div>
 </div>

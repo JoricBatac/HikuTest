@@ -40,14 +40,19 @@ app.get('/account/:username', accountController.getAccount);
 
 app.get('/forum/:username', forumController.getForum);
 app.post('/forum/:username', forumController.postDiscussion);
+app.post('/likePost', forumController.postLike);
+app.post('/dislikePost', forumController.postDislike);
+app.get('/updateForumRating', forumController.getRating);
 
 app.get('/forum/post/:postID', forumpostController.getForumPost);
 app.post('/forum/post/:postID', forumpostController.postComment);
+//app.post('/likeComment', forumpostController.postCommentLike);
+//app.post('/dislikeComment', forumpostController.postCommentDislike);
+app.get('/updatePostRating', forumpostController.getRating);
 
 app.post('/changeUsername', accountController.changeUsername);
 app.post('/changePassword', accountController.changePassword);
 app.post('/changeStatus', accountController.changeStatus);
 app.post('/updateCurr', accountController.updateCurr)
-//app.get('/likePost', forumController.getLikePost);
 
 module.exports = app;

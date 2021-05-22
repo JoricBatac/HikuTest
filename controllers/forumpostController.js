@@ -88,6 +88,106 @@ const forumpostController = {
         res.render('error', details);
       }
     });
+  },
+
+  /*
+  postCommentLike: function(req, res) {
+    var username = req.session.username;
+    var postID = req.body.postID;
+    var commentID = req.body.commentID;
+
+    var details = {};
+    db.findOne(User, {username: username}, '', function(result) {
+      if (result != null) {
+
+        // if user disliked it, removes dislike and increments post rating
+        if (result.dislikedComments.includes(commentID)) {
+          db.updateOne(User, {username: username}, { $pull: {dislikedComments: commentID} }, function (flag) {
+            if (flag) {
+              console.log('Comment: ' + commentID + ' removed from ' + username +'s dislikedComments');
+            }
+          });
+          db.updateOne(User, {username: username}, { $push: {likedComments: commentID} }, function (flag) {
+            if (flag) {
+              console.log(username + ' Liked Comment: ' + commentID);
+            }
+          });
+
+          db.findOne(ForumDiscussion, { postID: postID}, { comments: { $elemMatch: { commentID: commentID } } }, function(result) {
+            if (result != null) {
+              console.log(result);
+              var newRating = result.rating + 2;
+              db.updateOne(ForumDiscussion, { postID: postID, comments: { $elemMatch: { commentID: commentID } } }, { $set: {rating: newRating} }, function (flag) {
+                if (flag) {
+                  console.log('Comment: ' + commentID + ' new rating: ' + newRating);
+                }
+              });
+            }
+            else {
+              res.render('error', details);
+            }
+          });
+        }
+        // if user hasnt liked the post yet
+        else if (!result.likedComments.includes(commentID)) {
+          db.updateOne(User, {username: username}, { $push: {likedComments: commentID} }, function (flag) {
+            if (flag) {
+              console.log(username + ' Liked Comment: ' + commentID);
+            }
+          });
+          db.findOne(ForumDiscussion, { postID: postID}, { comments: { $elemMatch: { commentID: commentID } } }, function(result) {
+            if (result != null) {
+              console.log('a ' + result.rating);
+              var newRating = result.rating + 1;
+              db.updateOne(ForumDiscussion, { postID: postID, comments: { $elemMatch: { commentID: commentID } } }, { $set: {rating: newRating} }, function (flag) {
+                if (flag) {
+                  console.log('Comment: ' + commentID + ' new rating: ' + newRating);
+                }
+              });
+            }
+            else {
+              res.render('error', details);
+            }
+          });
+        }
+        // if user liked the post already, removes like, decrements rating
+        else {
+          db.updateOne(User, {username: username}, { $pull: {likedComments: commentID} }, function (flag) {
+            if (flag) {
+              console.log('Comment: ' + commentID + ' removed from ' + username +'s likedComments');
+            }
+          });
+          db.findOne(ForumDiscussion, { postID: postID}, { comments: { $elemMatch: { commentID: commentID } } }, function(result) {
+            if (result != null) {
+              console.log(result);
+              var newRating = result.rating - 1;
+              db.updateOne(ForumDiscussion, { postID: postID, comments: { $elemMatch: { commentID: commentID } } }, { $set: {rating: newRating} }, function (flag) {
+                if (flag) {
+                  console.log('Comment: ' + commentID + ' new rating: ' + newRating);
+                }
+              });
+            }
+            else {
+              res.render('error', details);
+            }
+          });
+        }
+      }
+      else {
+        res.render('error', details);
+      }
+    });
+  },
+
+  postCommentDislike: function(req, res) {
+
+  },*/
+
+  getRating: function(req, res) {
+    var postID = req.query.postID;
+    db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
+      res.send(result);
+    });
   }
 }
 
