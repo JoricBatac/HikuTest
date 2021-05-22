@@ -40,11 +40,9 @@
 
 
 <div id="midbox">
-    <div id="leftbox">
-      <img id="main_logo" src="images/hiku-big.png" style="width: 256px;">
-      <div class="body_text" id="text_dict">/hî-koo/</div>
-      <div class="body_text" id="text_desc">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</div>
 
+    <div id="leftbox">
+      {{> intro }}
       <a href="/" id="back_btn">< Back</a>
     </div>
 
@@ -56,7 +54,7 @@
             <div style="font-size: 22px"> Password </div>
             <input class="text_field"type="password" id="password" name="password" style="margin-bottom: 20px" required>
 
-            <button class="bottombutton" id="submit" type="submit" disabled><p style="margin-top:6px">Login</p></button>
+            <button class="bottombutton" id="submit" type="submit"><p style="margin-top:6px">Login</p></button>
             <p id="error"></p>
         </div>
       </form>

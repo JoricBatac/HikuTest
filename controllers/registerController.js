@@ -53,7 +53,7 @@ const registerController = {
         var user = {
           username: username,
           password: hash,
-          status: 'Welcome to Hiku!',
+          status: 'You do not have a bio yet.',
           tier: 0,
           tierProgress: 1,
           profpic: img_index,
@@ -72,7 +72,7 @@ const registerController = {
         db.insertOne(User, user, function(flag) {
           console.log(flag);
           if (flag) {
-            res.redirect('/login'); // not sure why this isnt working when flag is true anyways
+            res.redirect('/login'); 
           }
         });
       });

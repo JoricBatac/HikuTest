@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/trade.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/js/trade.js"></script>
+  <script>
+    charOwned =   {{{json charOwned}}};
+    armOwned =    {{{json armOwned}}};
+    shieldOwned = {{{json shieldOwned}}};
+    weapOwned =   {{{json weapOwned}}};
+    function start(){
+      var currChar = 0, currWeapon = 0, currShield = 0, currArmor = 0, slot=0;
+      document.getElementById("name1").innerHTML = charNames[charOwned[currChar]];
+      document.getElementById("slotname1").innerHTML = types[slot];
+      document.getElementById("toTrade").value = charNames[charOwned[currChar]];
+      document.getElementById("itemType").value = slot;
+      document.getElementById("itemIndex").value = charOwned[currChar];
+
+    $(document).ready(function () {
+
+      $('.card').on('click', '.bottombutton', function () {
+        var dispName = $(this).siblings('#formID').find('#offerN').val();
+        var itemMain = $(this).siblings('#formID').find('#uName').val();
+        alert('Remember to be mindful of what you accept! You do not want to take an offer you do not want.');
+        if($('#itemdisp').width() == 0){
+          $('#itemdisp').css('opacity',1);
+          $('#itemdisp').css('width',"1400px");
+          $('#itemdisp').css('width',"1400px");
+          $('#dispitem').text(itemMain);
+          $('#offers').text(dispName);
+        }
+        else{
+          $('#itemdisp').css('opacity',0);
+          $('#itemdisp').css('width',0);
+        }
+      });
+
+    });
+    }
+  </script>
+</head>
+<body onload="start()">
+  {{> header username=username}}
+
+  <div class="tradebox">
+    <div class="headertext"> Trade Setup </div>
+    <hr>
+    <div id="cont1">
+
+      <div class="rowcontainer">
+        <button onClick="changeSlot(0)" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="slotname1"></div>
+        <button onClick="changeSlot(1)" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+      <div class="rowcontainer" style="margin-top: 10px">
+        <button onClick="loadoutChange(0);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="name1"></div>
+        <button onClick="loadoutChange(1);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+    </div>
+
+    <hr>
+    
+      <div class="headertext" style="font-size:25px">Write something about it!</div>
+      <form method="post" action="/postTrade"> 
+        <div class="colcontainer">
+          <textarea name="posttext" cols="40" rows="5" style="margin-bottom: 10px;"></textarea>
+          <button onClick="post();" class="bottombutton">SUBMIT</button>
+          <input style="visibility: hidden;" id="toTrade" name="itemName">
+          <input style="visibility: hidden;" id="itemType" name="itemType">
+          <input style="visibility: hidden;" id="itemIndex" name="itemIndex">
+        </div>
+      </form>
+      </div>
+
+  <div class="tradebox2" style="margin-bottom: 50px; margin-top: 15px">
+    <div class="headertext"> Trade Offers </div>
+    <hr>
+    <div class="rowcontainer">
+      <div class="colcontainer" style="margin-left: 10px">
+        <div class="headertext" style="font-size: 25px;"> Posted Items </div>
+        <hr>
+        
+        {{#each tradeOffers}}  
+            {{> tradecard}}
+        {{/each}}
+      </div>
+      <div class="colcontainer" id="itemdisp" style=" width:0; transition: .5s ease; height: 170px; opacity:0;">
+        <div class="headertext" style="font-size: 25px; overflow: hidden;" > Posted Items </div>
+        <hr>
+        <div class="headertext" style="font-size: 20px; font-weight: bold" id="dispitem"></div>
+        <div class="headertext" style="font-size: 20px; color:#8fbcbb; font-weight: bold">Offers</div>
+        <div class="headertext" style="font-size: 20px;" id="offers"></div>
+
+        <button onClick="accept();" class="bottombutton" id="trade3">Accept</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

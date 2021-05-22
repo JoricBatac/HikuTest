@@ -115,6 +115,10 @@
               $('#error').text('Passwords are not the same!');
             }
 
+            else if ($('#img_index').val() === ""){
+              $('#error').text('Select an avatar!');
+            }
+
             else{
               console.log('entering register acc with ');
               console.log(username);
@@ -126,9 +130,7 @@
 
           }
 
-          if ($('#img_index').val() === ""){
-            $('#error').text('no image bruh');
-          }
+
 
           else{
             $('#error').text('Fill up all fields.');
@@ -157,10 +159,7 @@
 
 <div id="midbox">
     <div id="leftbox">
-      <img id="main_logo" src="images/hiku-big.png" style="width: 256px;">
-      <div class="body_text" id="text_dict">/hî-koo/</div>
-      <div class="body_text" id="text_desc">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</div>
-
+      {{> intro }}
       <a href="/" id="back_btn">< Back</a>
     </div>
 
