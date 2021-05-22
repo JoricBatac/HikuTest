@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/trade.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!--<script src="/js/home.js"></script>-->
+</head>
+<body>
+  {{> header username=username}}
+
+  <div class="tradebox">
+    <div class="headertext"> Trade Setup </div>
+    <hr>
+    <div id="cont1">
+
+      <div class="rowcontainer">
+        <button onClick="changeSlot(0,1);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="slotname1"> Character </div>
+        <button onClick="changeSlot(1,1);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+      <div class="rowcontainer" style="margin-top: 10px">
+        <button onClick="loadoutChange(0,1);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="name1"> Bobby(Lvl.32) </div>
+        <button onClick="loadoutChange(1,1);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+
+    </div>
+    <div class="tcont" id="cont2" style="height: 0px;">
+
+      <div class="rowcontainer">
+        <button onClick="changeSlot(0,2);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="slotname2"> Character </div>
+        <button onClick="changeSlot(1,2);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+      <div class="rowcontainer" style="margin-top: 10px; overflow-y: hidden">
+        <button onClick="loadoutChange(0,2);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="name2"> Bobby(Lvl.32) </div>
+        <button onClick="loadoutChange(1,2);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+
+    </div>
+
+    <div class="tcont" id="cont3" style="height: 0px;">
+
+      <div class="rowcontainer">
+        <button onClick="changeSlot(0,3);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="slotname3"> Character </div>
+        <button onClick="changeSlot(1,3);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+      <div class="rowcontainer" style="margin-top: 10px">
+        <button onClick="loadoutChange(0,3);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="name3"> Bobby(Lvl.32) </div>
+        <button onClick="loadoutChange(1,3);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+
+    </div>
+
+    <div class="tcont" id="cont4" style="height: 0px;">
+
+      <div class="rowcontainer">
+        <button onClick="changeSlot(0,4);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="slotname4"> Character </div>
+        <button onClick="changeSlot(1,4);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+      <div class="rowcontainer" style="margin-top: 10px">
+        <button onClick="loadoutChange(0,4);" class="changeButton" style="margin-right: 10px"> Prev </button>
+        <div class="detail" id="name4"> Bobby(Lvl.32) </div>
+        <button onClick="loadoutChange(1,4);" class="changeButton" style="margin-left: 10px"> Next </button>
+      </div>
+
+    </div>
+
+    <div class="rowcontainer" style="margin-top: 10px">
+      <button onClick="plus();" class="changeButton" id="plusButt" style="width:50px; margin-top:10px;"> + </button>
+    </div>
+
+    <hr>
+    <div class="headertext" style="font-size:25px">Write something about it!</div>
+    <textarea name="Text1" cols="40" rows="5" style="margin-bottom: 10px"></textarea>
+    <button onClick="post();" class="bottombutton">SUBMIT</button>
+  </div>
+
+  <div class="tradebox" style="margin-bottom: 50px; margin-top: 15px">
+    <div class="headertext"> Trade Offers </div>
+    <hr>
+    <div class="rowcontainer">
+      <div class="colcontainer" style="margin-left: 10px">
+        <div class="headertext" style="font-size: 25px;"> Posted Items </div>
+        <hr>
+        <button onClick="changeContent(0);" class="bottombutton" id="trade1" style="height:30px">Offer 1</button>
+        <button onClick="changeContent(1);" class="bottombutton" id="trade2" style="height:30px">Offer 2</button>
+        <button onClick="changeContent(2);" class="bottombutton" id="trade3" style="height:30px">Offer 3</button>
+      </div>
+      <div class="colcontainer" id="itemdisp" style="overflow: hidden; width:0; transition: .5s ease; height: 170px; opacity:0;">
+        <div class="headertext" style="font-size: 25px; overflow: hidden;" > Posted Items </div>
+        <hr>
+        <div class="headertext" style="font-size: 20px; font-weight: bold" id="dispitem"></div>
+        <div class="headertext" style="font-size: 20px; color:#8fbcbb; font-weight: bold">Offers</div>
+        <div class="headertext" style="font-size: 20px;" id="offers"></div>
+        <button onClick="accept();" class="bottombutton" id="trade3">Accept</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -16,6 +16,8 @@ const forumController = require('../controllers/forumController.js');
 
 const forumpostController = require('../controllers/forumpostController.js');
 
+const tradeController = require('../controllers/tradeController.js');
+
 const validation = require('../helpers/validation.js');
 
 const app = express();
@@ -38,6 +40,8 @@ app.get('/home/:username', homeController.getHome);
 
 app.get('/account/:username', accountController.getAccount);
 
+app.get('/trade/:username', tradeController.getTrade);
+
 app.get('/forum/:username', forumController.getForum);
 app.post('/forum/:username', forumController.postDiscussion);
 
@@ -47,7 +51,7 @@ app.post('/forum/post/:postID', forumpostController.postComment);
 app.post('/changeUsername', accountController.changeUsername);
 app.post('/changePassword', accountController.changePassword);
 app.post('/changeStatus', accountController.changeStatus);
-app.post('/updateCurr', accountController.updateCurr)
+app.post('/updateCurr', accountController.updateCurr);
 //app.get('/likePost', forumController.getLikePost);
 
 module.exports = app;
