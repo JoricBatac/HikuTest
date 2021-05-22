@@ -8,7 +8,9 @@ const ForumDiscussion = require('./ForumDiscussionModel.js');
 //const dotenv = require('dotenv');
 //dotenv.config();
 //const url = process.env.DB_URL;//'mongodb://localhost:27017/hiku-rework';
-const url = 'mongodb://localhost:27017/hiku-rework';
+//const url = 'mongodb://localhost:27017/hiku-rework';
+
+const url = "mongodb+srv://hiku-dev:amamiyasora@hiku-onlinedb-cluster.ykzrc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const options = {
   useUnifiedTopology: true,
