@@ -61,9 +61,9 @@ var weaponNames = ["Short Sword", "Wooden Bow", "Warhammer", "Nurse's Claymore",
 var shieldNames = ["Wooden Plate", "Spiked Guard", "Ivy Shield", "Iron Buckler", "Medusa"];
 var armorNames = ["Leather Tunic", "Chainmail", "Knight's Armor", "Uniqlo", "Iron Suit"];
 var types = ["Character","Weapon","Shield","Armor"];
-
-var currChar = 0, currWeapon = 0, currShield = 0; currArmor = 0, slot = 0;
-function changeSlot(order, space){
+//0 - char, 1 - weap, 2 - shield 3 - armor
+var currChar = 0, currWeapon = 0, currShield = 0, currArmor = 0, slot=0;
+function changeSlot(order){
   if (order == 1) {
     if (slot != 3) slot += 1;
     else slot = 0;
@@ -72,73 +72,94 @@ function changeSlot(order, space){
     if (slot != 0) slot -= 1;
     else slot = 3;
   }
-
-  if(space == 1)
-    document.getElementById("slotname1").innerHTML = types[slot];
-  else if(space == 2)
-    document.getElementById("slotname2").innerHTML = types[slot];
-  else if(space == 3)
-    document.getElementById("slotname3").innerHTML = types[slot];
-  else if(space == 4)
-    document.getElementById("slotname4").innerHTML = types[slot];
-
+  document.getElementById("slotname1").innerHTML = types[slot];
   if(slot == 0){
-    changeCharName(space);
+    changeCharName();
   }
   else if (slot == 1){
-    changeWeapName(space);
+    changeWeapName();
   }
   else if (slot == 2){
-    changeShiName(space);
+    changeShiName();
   }
   else {
-    changeArmName(space);
+    changeArmName();
   }
 }
 
-function changeCharName (space){
-  if(space == 1)
+function changeCharName (){
     document.getElementById("name1").innerHTML = charNames[charOwned[currChar]];
-  if(space == 2)
-    document.getElementById("name2").innerHTML = charNames[currChar];
-  if(space == 3)
-    document.getElementById("name3").innerHTML = charNames[currChar];
-  if(space == 4)
-    document.getElementById("name4").innerHTML = charNames[currChar];
+    document.getElementById("toTrade").value = charNames[charOwned[currChar]];
+    document.getElementById("itemType").value = slot;
+    document.getElementById("itemIndex").value = charOwned[currChar];
 }
-
-function changeWeapName (space){
-  if(space == 1)
+function changeWeapName (){
     document.getElementById("name1").innerHTML = weaponNames[weapOwned[currWeapon]];
-  if(space == 2)
-    document.getElementById("name2").innerHTML = weaponNames[currWeapon];
-  if(space == 3)
-    document.getElementById("name3").innerHTML = weaponNames[currWeapon];
-  if(space == 4)
-    document.getElementById("name4").innerHTML = weaponNames[currWeapon];
+    document.getElementById("toTrade").value = weaponNames[weapOwned[currWeapon]];
+    document.getElementById("itemType").value = slot;
+    document.getElementById("itemIndex").value = weapOwned[currWeapon];
+}
+function changeShiName (){
+    document.getElementById("name1").innerHTML = shieldNames[shieldOwned[currShield]];
+    document.getElementById("toTrade").value = shieldNames[shieldOwned[currShield]];
+    document.getElementById("itemType").value = slot;
+    document.getElementById("itemIndex").value = shieldOwned[currShield];
+}
+function changeArmName (){
+    document.getElementById("name1").innerHTML = armorNames[armOwned[currArmor]];
+    document.getElementById("toTrade").value = armorNames[armOwned[currArmor]];
+    document.getElementById("itemType").value = slot;
+    document.getElementById("itemIndex").value = armOwned[currArmor];
 }
 
-function changeShiName (space){
-  if(space == 1)
-    document.getElementById("name1").innerHTML = shieldNames[currShield];
-  if(space == 2)
-    document.getElementById("name2").innerHTML = shieldNames[currShield];
-  if(space == 3)
-    document.getElementById("name3").innerHTML = shieldNames[currShield];
-  if(space == 4)
-    document.getElementById("name4").innerHTML = shieldNames[currShield];
+function loadoutChange(order) {
+  switch (slot) {
+    case 0:
+      if (order == 1) {
+        if (currChar != charOwned.length - 1) currChar += 1;
+        else currChar = 0;
+      }
+      else {
+        if (currChar != 0) currChar -= 1;
+        else currChar = charOwned.length - 1;
+      }
+      changeCharName();
+      break;
+    case 1:
+      if (order == 1) {
+        if (currWeapon != weapOwned.length - 1) currWeapon += 1;
+        else currWeapon = 0;
+      }
+      else {
+        if (currWeapon != 0) currWeapon -= 1;
+        else currWeapon = weapOwned.length - 1;
+      }
+      changeWeapName();
+      break;
+    case 2:
+      if (order == 1) {
+        if (currShield != shieldOwned.length - 1) currShield += 1;
+        else currShield = 0;
+      }
+      else {
+        if (currShield != 0) currShield -= 1;
+        else currShield = shieldOwned.length - 1;
+      }
+      changeShiName();
+      break;
+    case 3:
+      if (order == 1) {
+        if (currArmor != armOwned.length - 1) currArmor += 1;
+        else currArmor = 0;
+      }
+      else {
+        if (currArmor != 0) currArmor -= 1;
+        else currArmor = armOwned.length - 1;
+      }
+      changeArmName();
+      break;
+  }
 }
-function changeArmName (space){
-  if(space == 1)
-    document.getElementById("name1").innerHTML = armorNames[currArmor];
-  if(space == 2)
-    document.getElementById("name2").innerHTML = armorNames[currArmor];
-  if(space == 3)
-    document.getElementById("name3").innerHTML = armorNames[currArmor];
-  if(space == 4)
-    document.getElementById("name4").innerHTML = armorNames[currArmor];
-}
-
 var expanded = 0;
 function changeContent(item){
   if(expanded == 0){

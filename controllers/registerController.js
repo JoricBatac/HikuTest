@@ -72,7 +72,7 @@ const registerController = {
         db.insertOne(User, user, function(flag) {
           console.log(flag);
           if (flag) {
-            res.redirect('/login'); // not sure why this isnt working when flag is true anyways
+            res.redirect('/login'); 
           }
         });
       });

@@ -41,6 +41,7 @@ app.get('/home/:username', homeController.getHome);
 app.get('/account/:username', accountController.getAccount);
 
 app.get('/trade/:username', tradeController.getTrade);
+app.post('/postTrade', tradeController.postTrade);
 
 app.get('/forum/:username', forumController.getForum);
 app.post('/forum/:username', forumController.postDiscussion);

@@ -4,6 +4,8 @@ const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
 
+const Trade = require('../models/TradeModel.js');
+
 const tradeController = {
 
   getTrade: function(req, res) {
@@ -36,6 +38,39 @@ const tradeController = {
         res.render('error', details);
       }
     });
+  },
+  postTrade: function(req, res){
+    var username = req.session.username;
+    var itemName = req.body.itemName;
+    var itemType = req.body.itemType;
+    var itemIndex = req.body.itemIndex;
+
+
+    var trade = {
+          username: username,
+          itemName: itemName,
+          itemType: itemType,
+          itemIndex: itemIndex,
+          tradeOffers:[]
+        }
+
+    console.log(trade);
+    if(itemType==0)
+    db.updateOne(User, {username: username}, { $pull: {charOwned: itemIndex} }, function (flag) {
+        if (flag) {
+          console.log('removed ' + itemIndex);
+          res.redirect('/trade/' + username);
+        }
+        else{
+          console.log(flag);
+        }
+      });
+    db.insertOne(Trade, trade, function(flag) {
+          console.log(flag);
+          if (flag) {
+            console.log('trade posted'); 
+          }
+        });
   }
 }
 
