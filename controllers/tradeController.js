@@ -9,7 +9,7 @@ const tradeController = {
   getTrade: function(req, res) {
     var query = {username: req.params.username};
 
-    var projection = 'username charOwned armOwned weapOwned shieldOwned currC currW currA currS';
+    var projection = 'username charOwned armOwned weapOwned shieldOwned';
 
     var details = {};
 
