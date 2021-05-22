@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Explore</title>
-  <link rel="stylesheet" type="text/css" media="all" href="explore.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/explore.css">
   <script type="text/javascript">
     function taskAlert() {
       alert("You still have an ongoing task!");
@@ -20,169 +21,13 @@
   </div>
 
   <!--LOCATION 1-->
-  <div class="explore_container">
-    <div class="explore_bg_img" id="explore_thumb"></div>
 
-    <div class="explore_text_container">
-      <div class="explore_map_title">Yuchengco Building</div>
-      <div class="explore_possible_loot">Possible Loot: Apple AirPods</div>
-    </div>
-
-    <div class="explore_bottom">
-
-      <div class="explore_info_container">
-        <div class="exploredesc">
-          Before the ECQ, this building housed the Senior High School of the De La Salle University. It had never been visited by the students of the College of Computer Studies as it is too far away from their own building, Gokongwei.
-        </div>
-
-        <div class="exploreopt">
-          <div class="buttonopt">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="soloexplore" value="SOLO">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="teamexplore" value="CO-OP (Forum)">
-          </div>
-        </div>
-      </div>
-    <hr>
-      <div class="explorefooter">
-        <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="1" class="slider" id="durationrange1">
-          <p class="outcome" id="outcome1">15m ⇌ x1.0 exp/loot multiplier</p>
-        </div>
-      </div>
-    </div>
-  </div>
+    {{#each location}}
+        {{> explore_loc}}
+    {{/each}}
 
   <!--LOCATION 2-->
-  <div class="explore_container">
-    <div class="explore_bg_img" id="explore_thumb1"></div>
-
-    <div class="explore_text_container">
-      <div class="explore_map_title">Gil Puyat Station</div>
-      <div class="explore_possible_loot">Possible Loot: Beep Card</div>
-    </div>
-
-    <div class="explore_bottom">
-
-      <div class="explore_info_container">
-        <div class="exploredesc">
-          Commonly mistaken as "Pedro Gil Station", Gil Puyat Station is a hotspot for pickpocketers, or colloquially known as "mandurukot". Many players use this location in battling each other because of its notoriety.
-        </div>
-
-        <div class="exploreopt">
-          <div class="buttonopt">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="soloexplore" value="SOLO">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="teamexplore" value="CO-OP (Forum)">
-          </div>
-        </div>
-      </div>
-    <hr>
-      <div class="explorefooter">
-        <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="1" class="slider" id="durationrange2">
-          <p class="outcome" id="outcome2">15m ⇌ x1.0 exp/loot multiplier</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--LOCATION 3-->
-  <div class="explore_container">
-    <div class="explore_bg_img" id="explore_thumb2"></div>
-
-    <div class="explore_text_container">
-      <div class="explore_map_title">Akihabara</div>
-      <div class="explore_possible_loot">Possible Loot: Tanti Spellbook</div>
-    </div>
-
-    <div class="explore_bottom">
-
-      <div class="explore_info_container">
-        <div class="exploredesc">
-          Named after Akihiko Matsubara, the creator of Tanti. Because of that Akihabara frequently gets attacked by the Tanti. Explore this location at your own risk!
-        </div>
-
-        <div class="exploreopt">
-          <div class="buttonopt">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="soloexplore" value="SOLO">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="teamexplore" value="CO-OP (Forum)">
-          </div>
-        </div>
-      </div>
-    <hr>
-      <div class="explorefooter">
-        <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="1" class="slider" id="durationrange3">
-          <p class="outcome" id="outcome3">15m ⇌ x1.0 exp/loot multiplier</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--LOCATION 4-->
-  <div class="explore_container">
-    <div class="explore_bg_img" id="explore_thumb3"></div>
-
-    <div class="explore_text_container">
-      <div class="explore_map_title">The Land of Oompa</div>
-      <div class="explore_possible_loot">Possible Loot: Jay Quearie's Helmet</div>
-    </div>
-
-    <div class="explore_bottom">
-
-      <div class="explore_info_container">
-        <div class="exploredesc">
-          This location has been sequestered by Feene Ishlaighn, and his big red dog, Jay Quearie. Help them defeat the monsters approaching their kingdom.
-        </div>
-
-        <div class="exploreopt">
-          <div class="buttonopt">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="soloexplore" value="SOLO">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="teamexplore" value="CO-OP (Forum)">
-          </div>
-        </div>
-      </div>
-    <hr>
-      <div class="explorefooter">
-        <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="1" class="slider" id="durationrange4">
-          <p class="outcome" id="outcome4">15m ⇌ x1.0 exp/loot multiplier</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--LOCATION 5-->
-  <div class="explore_container">
-    <div class="explore_bg_img" id="explore_thumb4"></div>
-
-    <div class="explore_text_container">
-      <div class="explore_map_title">Shore Top</div>
-      <div class="explore_possible_loot">Possible Loot: Grubby Putty</div>
-    </div>
-
-    <div class="explore_bottom">
-
-      <div class="explore_info_container">
-        <div class="exploredesc">
-          Best location to explore seafood. During high tide, you may need to be at a higher tier to obtain swimming skills.
-        </div>
-
-        <div class="exploreopt">
-          <div class="buttonopt">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="soloexplore" value="SOLO">
-            <input type="button" class="explorebutton" onclick="taskAlert()" id="teamexplore" value="CO-OP (Forum)">
-          </div>
-        </div>
-      </div>
-    <hr>
-      <div class="explorefooter">
-        <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="1" class="slider" id="durationrange5">
-          <p class="outcome" id="outcome5">15m ⇌ x1.0 exp/loot multiplier</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
 <script type="text/javascript">
   var slider1 = document.getElementById("durationrange1");

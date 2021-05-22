@@ -12,6 +12,8 @@ const homeController = require('../controllers/homeController.js');
 
 const accountController = require('../controllers/accountController.js');
 
+const exploreController = require('../controllers/exploreController.js');
+
 const forumController = require('../controllers/forumController.js');
 
 const forumpostController = require('../controllers/forumpostController.js');
@@ -39,6 +41,8 @@ app.get('/logout', logoutController.getLogOut);
 app.get('/home/:username', homeController.getHome);
 
 app.get('/account/:username', accountController.getAccount);
+
+app.get('/explore/:username', exploreController.getExplore);
 
 app.get('/trade/:username', tradeController.getTrade);
 app.post('/postTrade', tradeController.postTrade);
