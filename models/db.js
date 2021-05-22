@@ -72,7 +72,7 @@ const database = {
       });
   },
 
-  deleteOne: function(model, conditions) {
+  deleteOne: function(model, conditions, callback) {
       model.deleteOne(conditions, function (error, result) {
           if(error) return callback(false);
           console.log('Document deleted: ' + result.deletedCount);
@@ -80,7 +80,7 @@ const database = {
       });
   },
 
-  deleteMany: function(model, conditions) {
+  deleteMany: function(model, conditions, callback) {
       model.deleteMany(conditions, function (error, result) {
           if(error) return callback(false);
           console.log('Document deleted: ' + result.deletedCount);

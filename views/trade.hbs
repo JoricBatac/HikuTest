@@ -19,27 +19,73 @@
       document.getElementById("itemType").value = slot;
       document.getElementById("itemIndex").value = charOwned[currChar];
 
+    }
     $(document).ready(function () {
 
+      $('#testSubmit').ready(function () {
+        var username = {{{json username}}};
+          $.get('/getCheckTrade', {username: username}, function (result) {
+            if(result.username == username) {
+              $('#postSubmit').css('background-color', '#FF6A55');
+              $('#postSubmit').html('Already an active trade!');
+              $('#postSubmit').prop('disabled', true);
+            }
+            else{
+              $('#postSubmit').html('SUBMIT');
+              $('#postSubmit').prop('disabled', false);
+            }
+          });
+        });
+      
       $('.card').on('click', '.bottombutton', function () {
-        var dispName = $(this).siblings('#formID').find('#offerN').val();
-        var itemMain = $(this).siblings('#formID').find('#uName').val();
-        alert('Remember to be mindful of what you accept! You do not want to take an offer you do not want.');
-        if($('#itemdisp').width() == 0){
-          $('#itemdisp').css('opacity',1);
-          $('#itemdisp').css('width',"1400px");
-          $('#itemdisp').css('width',"1400px");
-          $('#dispitem').text(itemMain);
-          $('#offers').text(dispName);
-        }
-        else{
-          $('#itemdisp').css('opacity',0);
-          $('#itemdisp').css('width',0);
-        }
-      });
+        
+          var offeredItem = $(this).siblings('#formID').find('#offerN').val();
+          var itemMain = $(this).siblings('#formID').find('#uName').val();
+          var offerType = $(this).siblings('#formID').find('#offerT').val();
+          var offerIndex = $(this).siblings('#formID').find('#offerI').val();
+          var usernameOfferer = $(this).siblings('#formID').find('#userOffer').val();
+            
+            var itemIndex = {{{json itemIndex}}};
+            var itemType = {{{json itemType}}};
 
+          alert('Remember to be mindful of what you accept! You do not want to take an offer you do not want.');
+          if($('#itemdisp').width() == 0){
+            $('#itemdisp').css('opacity',1);
+            $('#itemdisp').css('width',"1400px");
+            $('#dispitem').text(itemMain);
+            $('#offers').text(offeredItem);
+            $('#offerer').val(usernameOfferer);
+            $('#offerType').val(offerType);
+            $('#offerIndex').val(offerIndex);
+            $('#itemIndexMain').val(itemIndex);
+            $('#itemTypeMain').val(itemType);
+          }
+          else{
+            $('#itemdisp').css('opacity',0);
+            $('#itemdisp').css('width',0);
+          }
+        
+      });
+      
+      
+      $('#acceptButton').click(function () {
+          
+          var username = {{{json username}}};
+          var itemIndex = {{{json itemIndex}}};
+          var itemType = {{{json itemType}}};
+          
+          var offerType = $('#offerType').val();
+          var offerIndex = $('#offerIndex').val();
+          var usernameOfferer = $('#offerer').val();
+        
+          
+          $.get('/acceptTrade', {username: username , usernameOfferer: usernameOfferer, itemType: itemType, itemIndex: itemIndex, offerType: offerType, offerIndex: offerIndex}, function (result) {
+            console.log('Mission Accomplished');
+        });
+      });
+      
     });
-    }
+
   </script>
 </head>
 <body onload="start()">
@@ -68,7 +114,7 @@
       <form method="post" action="/postTrade"> 
         <div class="colcontainer">
           <textarea name="posttext" cols="40" rows="5" style="margin-bottom: 10px;"></textarea>
-          <button onClick="post();" class="bottombutton">SUBMIT</button>
+          <button onClick="post();" class="bottombutton" id="postSubmit">SUBMIT</button>
           <input style="visibility: hidden;" id="toTrade" name="itemName">
           <input style="visibility: hidden;" id="itemType" name="itemType">
           <input style="visibility: hidden;" id="itemIndex" name="itemIndex">
@@ -83,19 +129,23 @@
       <div class="colcontainer" style="margin-left: 10px">
         <div class="headertext" style="font-size: 25px;"> Posted Items </div>
         <hr>
-        
         {{#each tradeOffers}}  
             {{> tradecard}}
         {{/each}}
       </div>
-      <div class="colcontainer" id="itemdisp" style=" width:0; transition: .5s ease; height: 170px; opacity:0;">
+        <div class="colcontainer" id="itemdisp" style=" width:0; transition: .5s ease; height: 170px; opacity:0;">
         <div class="headertext" style="font-size: 25px; overflow: hidden;" > Posted Items </div>
         <hr>
         <div class="headertext" style="font-size: 20px; font-weight: bold" id="dispitem"></div>
         <div class="headertext" style="font-size: 20px; color:#8fbcbb; font-weight: bold">Offers</div>
         <div class="headertext" style="font-size: 20px;" id="offers"></div>
+        <input style="display: none" id="itemTypeMain" name="itemType">
+        <input style="display: none" id="itemIndexMain" name="itemIndex">
+        <input style="display: none" id="offerer" name="offerer">
+        <input style="display: none" id="offerType" name="offerType">
+        <input style="display: none" id="offerIndex" name="offerIndex">
 
-        <button onClick="accept();" class="bottombutton" id="trade3">Accept</button>
+        <button class="bottombutton" id="acceptButton">Accept</button>
       </div>
     </div>
   </div>

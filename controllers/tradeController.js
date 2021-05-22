@@ -12,7 +12,7 @@ const tradeController = {
     var query = {username: req.params.username};
 
     var projection = 'username charOwned armOwned weapOwned shieldOwned';
-    var projection2 = 'username itemName tradeOffers'
+    var projection2 = 'username itemName itemType itemIndex tradeOffers'
     var details = {};
 
     if (req.session.username) {
@@ -26,9 +26,11 @@ const tradeController = {
       if (result != null) {
         details.username = result.username;
         details.itemName = result.itemName;
+        details.itemType = result.itemType;
+        details.itemIndex = result.itemIndex;
         details.tradeOffers = result.tradeOffers;
 
-        console.log(result);
+        console.log(result.tradeOffers);
       }
     });
     db.findOne(User, query, projection, function(result) {
@@ -38,15 +40,7 @@ const tradeController = {
         details.armOwned = result.armOwned;
         details.weapOwned = result.weapOwned;
         details.shieldOwned = result.shieldOwned;
-        db.findOne(Trade, query, projection2, function(result) {
-          if (result != null) {
-            details.username = result.username;
-            details.itemName = result.itemName;
-            details.tradeOffers = result.tradeOffers;
 
-            console.log(details.tradeOffers);
-          }
-        });
         res.render('trade', details);
       }
       else {
@@ -63,9 +57,9 @@ const tradeController = {
     var offer = {
       username : username,
       item : itemName,
-      offerName : "temp offer",
-      offerIndex : 69,
-      offerType : 69
+      offerName : "Brines Pogi",
+      offerIndex : 0,
+      offerType : 0
     }
     var trade = {
           username: username,
@@ -75,7 +69,6 @@ const tradeController = {
           tradeOffers:[offer]
         }
 
-    console.log(trade);
     if(itemType==0)
     db.updateOne(User, {username: username}, { $pull: {charOwned: itemIndex} }, function (flag) {
         if (flag) {
@@ -83,7 +76,7 @@ const tradeController = {
           res.redirect('/trade/' + username);
         }
         else{
-          console.log(flag);
+          console.log('char '+flag);
         }
       });
   if(itemType==1)
@@ -122,6 +115,70 @@ const tradeController = {
           console.log('trade posted'); 
         }
       });
+  },
+  acceptTrade: function(req, res) {
+    var username = req.query.username;
+    var usernameOfferer = req.query.usernameOfferer;
+    var itemType = req.query.itemType;
+    var itemIndex = req.query.itemIndex;
+    var offerType = req.query.offerType;
+    var offerIndex = req.query.offerIndex;
+    console.log('hallo');
+        db.deleteOne(Trade, {username:username}, (err,result) => {
+            if(err) {
+              console.error(err);
+            }
+            else{
+              console.log(':)');
+            }
+        });
+        if(itemType==0)
+          db.updateOne(User, {username: username}, { $push: {charOwned: itemIndex} }, function (flag) {
+              if (flag) {
+                console.log('pushed ' + itemIndex);
+                res.redirect('/trade/' + username);
+              }
+              else{
+                console.log('char '+flag);
+              }
+            });
+        if(itemType==1)
+          db.updateOne(User, {username: username}, { $push: {weapOwned: itemIndex} }, function (flag) {
+              if (flag) {
+                console.log('pushed ' + itemIndex);
+                res.redirect('/trade/' + username);
+              }
+              else{
+                console.log(flag);
+              }
+            });
+        if(itemType==2)
+          db.updateOne(User, {username: username}, { $push: {shieldOwned: itemIndex} }, function (flag) {
+              if (flag) {
+                console.log('pushed ' + itemIndex);
+                res.redirect('/trade/' + username);
+              }
+              else{
+                console.log(flag);
+              }
+            });
+        if(itemType==3)
+          db.updateOne(User, {username: username}, { $push: {armOwned: itemIndex} }, function (flag) {
+              if (flag) {
+                console.log('pushed ' + itemIndex);
+                res.redirect('/trade/' + username);
+              }
+              else{
+                console.log(flag);
+              }
+            });
+  },
+  getCheckTrade: function(req, res) {
+    var username = req.query.username;
+    console.log('entered check trade');
+    db.findOne(Trade, {username: username}, 'username', function (result) {
+      res.send(result);
+    });
   }
 }
 
