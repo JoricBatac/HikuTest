@@ -160,37 +160,4 @@ function loadoutChange(order) {
       break;
   }
 }
-var expanded = 0;
-function changeContent(item){
-  if(expanded == 0){
-    document.getElementById("itemdisp").style.width = "1400px";
-    document.getElementById("itemdisp").style.opacity = 1;
-    expanded = 1;
-  }
-  else if(expanded == 1){
-    document.getElementById("itemdisp").style.width = "0px";
-    document.getElementById("itemdisp").style.opacity = 0;
-    expanded = 0;
-  }
 
-  if(item == 0){
-    setTimeout(function() {
-      document.getElementById("dispitem").innerHTML = "Bow of Aaron and Nora-A's shield";
-      document.getElementById("offers").innerHTML = "Bronze Sword";
-    }, 200);
-  }
-
-  if(item == 1){
-    setTimeout(function() {
-      document.getElementById("dispitem").innerHTML = "Sword of Yesh";
-      document.getElementById("offers").innerHTML = "Buckler";
-    }, 200);
-  }
-
-  if(item == 2){
-    setTimeout(function() {
-      document.getElementById("dispitem").innerHTML = "Bow of Aaron and Nora-A's shield";
-      document.getElementById("offers").innerHTML = "Brine's Greatsword";
-    }, 200);
-  }
-}
