@@ -53,7 +53,7 @@ const registerController = {
         var user = {
           username: username,
           password: hash,
-          status: 'Welcome to Hiku!',
+          status: 'You do not have a bio yet.',
           tier: 0,
           tierProgress: 1,
           profpic: img_index,
