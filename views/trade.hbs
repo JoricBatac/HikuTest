@@ -7,10 +7,10 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="/js/trade.js"></script>
   <script>
-    charOwned = {{{json charOwned}}};
-    armOwned = {{{json armOwned}}};
+    charOwned =   {{{json charOwned}}};
+    armOwned =    {{{json armOwned}}};
     shieldOwned = {{{json shieldOwned}}};
-    weapOwned = {{{json weapOwned}}};
+    weapOwned =   {{{json weapOwned}}};
     function start(){
       var currChar = 0, currWeapon = 0, currShield = 0, currArmor = 0, slot=0;
       document.getElementById("name1").innerHTML = charNames[charOwned[currChar]];
@@ -18,6 +18,27 @@
       document.getElementById("toTrade").value = charNames[charOwned[currChar]];
       document.getElementById("itemType").value = slot;
       document.getElementById("itemIndex").value = charOwned[currChar];
+
+    $(document).ready(function () {
+
+      $('.card').on('click', '.bottombutton', function () {
+        var dispName = $(this).siblings('#formID').find('#offerN').val();
+        var itemMain = $(this).siblings('#formID').find('#uName').val();
+        alert('Remember to be mindful of what you accept! You do not want to take an offer you do not want.');
+        if($('#itemdisp').width() == 0){
+          $('#itemdisp').css('opacity',1);
+          $('#itemdisp').css('width',"1400px");
+          $('#itemdisp').css('width',"1400px");
+          $('#dispitem').text(itemMain);
+          $('#offers').text(dispName);
+        }
+        else{
+          $('#itemdisp').css('opacity',0);
+          $('#itemdisp').css('width',0);
+        }
+      });
+
+    });
     }
   </script>
 </head>
@@ -62,16 +83,18 @@
       <div class="colcontainer" style="margin-left: 10px">
         <div class="headertext" style="font-size: 25px;"> Posted Items </div>
         <hr>
-        <button onClick="changeContent(0);" class="bottombutton" id="trade1" style="height:30px">Offer 1</button>
-        <button onClick="changeContent(1);" class="bottombutton" id="trade2" style="height:30px">Offer 2</button>
-        <button onClick="changeContent(2);" class="bottombutton" id="trade3" style="height:30px">Offer 3</button>
+        
+        {{#each tradeOffers}}  
+            {{> tradecard}}
+        {{/each}}
       </div>
-      <div class="colcontainer" id="itemdisp" style="overflow: hidden; width:0; transition: .5s ease; height: 170px; opacity:0;">
+      <div class="colcontainer" id="itemdisp" style=" width:0; transition: .5s ease; height: 170px; opacity:0;">
         <div class="headertext" style="font-size: 25px; overflow: hidden;" > Posted Items </div>
         <hr>
         <div class="headertext" style="font-size: 20px; font-weight: bold" id="dispitem"></div>
         <div class="headertext" style="font-size: 20px; color:#8fbcbb; font-weight: bold">Offers</div>
         <div class="headertext" style="font-size: 20px;" id="offers"></div>
+
         <button onClick="accept();" class="bottombutton" id="trade3">Accept</button>
       </div>
     </div>

@@ -3,6 +3,12 @@ var offerSchema = new mongoose.Schema({
     username: {
         type: String,
     },
+    item: {
+        type: String,
+    },
+    offerName: {
+        type: String,
+    },
     offerType: {
         type: Number,
     },
