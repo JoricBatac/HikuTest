@@ -80,9 +80,7 @@ const forumDiscussionController = {
           comments: [],
           rating: 0,
         };
-        console.log(discussion);
         db.insertOne(ForumDiscussion, discussion, function(flag) {
-          console.log(flag);
           if (flag) {
             console.log('Added ' + discussion.title);
             res.redirect('/forum/discussion/' + username);
