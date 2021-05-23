@@ -55,10 +55,10 @@ const tradeController = {
     var itemIndex = req.body.itemIndex;
 
     var offer = {
-      username : username,
+      username : "JoricTest",
       item : itemName,
       offerName : "Brines Pogi",
-      offerIndex : 0,
+      offerIndex : 2,
       offerType : 0
     }
     var trade = {
@@ -173,6 +173,7 @@ const tradeController = {
           db.updateOne(User, {username: usernameOfferer}, { $push: {charOwned: itemIndex} }, function (flag) {
               if (flag) {
                 console.log('offerer pushed ' + offerIndex);
+                res.redirect('/trade/' + username);
               }
               else{
                 console.log(+flag);
@@ -182,6 +183,7 @@ const tradeController = {
           db.updateOne(User, {username: usernameOfferer}, { $push: {weapOwned: itemIndex} }, function (flag) {
               if (flag) {
                 console.log('offerer pushed ' + offerIndex);
+                res.redirect('/trade/' + username);
               }
               else{
                 console.log(flag);
@@ -191,6 +193,7 @@ const tradeController = {
           db.updateOne(User, {username: usernameOfferer}, { $push: {shieldOwned: itemIndex} }, function (flag) {
               if (flag) {
                 console.log('offerer pushed ' + offerIndex);
+                res.redirect('/trade/' + username);
               }
               else{
                 console.log(flag);
@@ -200,7 +203,7 @@ const tradeController = {
           db.updateOne(User, {username: usernameOfferer}, { $push: {armOwned: itemIndex} }, function (flag) {
               if (flag) {
                 console.log('offerer pushed ' + offerIndex);
-
+                res.redirect('/trade/' + username);
               }
               else{
                 console.log(flag);
@@ -215,6 +218,57 @@ const tradeController = {
     db.findOne(Trade, {username: username}, 'username', function (result) {
       res.send(result);
     });
+  },
+  removeTrade: function(req, res) {
+    var username = req.body.username;
+    var itemType = req.body.itemType;
+    var itemIndex = req.body.itemIndex;
+    console.log('removing trade');
+    db.deleteOne(Trade, {username:username}, (err,result) => {
+      if(err) {
+        console.error(err);
+      }
+      else{
+        console.log(':)');
+      }
+    });
+    if(itemType==0)
+      db.updateOne(User, {username: username}, { $push: {charOwned: itemIndex} }, function (flag) {
+        if (flag) {
+          console.log('selfpushed ' + itemIndex);
+        }
+        else{
+          console.log(flag);
+        }
+      });
+    if(itemType==1)
+      db.updateOne(User, {username: username}, { $push: {weapOwned: itemIndex} }, function (flag) {
+        if (flag) {
+          console.log('selfpushed ' + itemIndex);         
+        }
+        else{
+          console.log(flag);
+        }
+      });
+    if(itemType==2)
+      db.updateOne(User, {username: username}, { $push: {shieldOwned: itemIndex} }, function (flag) {
+        if (flag) {
+          console.log('selfpushed ' + itemIndex);          
+        }
+        else{
+          console.log(flag);
+        }
+      });
+    if(itemType==3)
+      db.updateOne(User, {username: username}, { $push: {armOwned: itemIndex} }, function (flag) {
+        if (flag) {
+          console.log('selfpushed ' + itemIndex);
+        }
+        else{
+          console.log(flag);
+        }
+      });
+      res.redirect('/trade/' + username);    
   }
 }
 
