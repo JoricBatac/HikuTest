@@ -1,29 +1,5 @@
 var mongoose = require('mongoose');
 
-var commentSchema = new mongoose.Schema({
-    username: {
-        type: String,
-    },
-    profpic: {
-        type: Number,
-    },
-    repliedAt: {
-        type: Date,
-        default: Date.now
-    },
-    comment: {
-        type: String
-    },
-    rating: {
-        type: Number
-    },
-    commentID: {
-        type: mongoose.Schema.Types.ObjectId,
-        default: mongoose.Types.ObjectId,
-        index: { unique: true }
-    }
-});
-
 var TestSchema = new mongoose.Schema({
   username: {
       type: String,
@@ -52,7 +28,21 @@ var TestSchema = new mongoose.Schema({
   rating: {
       type: Number
   },
-  comments: [commentSchema]
+  comments: [{
+      username: {
+          type: String,
+      },
+      profpic: {
+          type: Number,
+      },
+      repliedAt: {
+          type: Date,
+          default: Date.now
+      },
+      comment: {
+          type: String
+      }
+  }]
 });
 
 module.exports = mongoose.model('Test', TestSchema);
