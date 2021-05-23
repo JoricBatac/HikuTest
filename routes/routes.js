@@ -50,6 +50,7 @@ app.get('/trade/:username', tradeController.getTrade);
 app.post('/postTrade', tradeController.postTrade);
 app.get('/getCheckTrade', tradeController.getCheckTrade);
 app.post('/acceptTrade', tradeController.acceptTrade);
+app.post('/removeTrade', tradeController.removeTrade);
 
 app.get('/forum/:username', forumController.getForum);
 app.post('/forum/:username', forumController.postDiscussion);
