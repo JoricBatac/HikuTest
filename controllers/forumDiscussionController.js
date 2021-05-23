@@ -6,6 +6,7 @@ const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
 const ForumDiscussion = require('../models/ForumDiscussionModel.js');
+const Post = require('../models/TestModel.js');
 
 const forumDiscussionController = {
 
@@ -30,7 +31,7 @@ const forumDiscussionController = {
         details.profpic = result.profpic;
 
 
-        ForumDiscussion.find({},).exec((err, result) => {
+        Post.find({},).exec((err, result) => {
           if (err) {
             console.log('discussion posts load error');
           }
@@ -51,6 +52,7 @@ const forumDiscussionController = {
           }
         });
 
+        //res.render('forumDiscussion', details);
       }
       else {
         res.render('error', details);
@@ -78,18 +80,43 @@ const forumDiscussionController = {
           title: title,
           content: content,
           comments: [],
-          rating: 0,
+          rating: 0
         };
-        db.insertOne(ForumDiscussion, discussion, function(flag) {
+
+        db.insertOne(Post, discussion, function(flag) {
+          console.log(discussion);
           if (flag) {
-            console.log('Added ' + discussion.title);
+            console.log('Added ' + discussion);
             res.redirect('/forum/discussion/' + username);
           }
+          else {
+            console.log('Insert Discussion ' + flag);
+          }
         });
+
+        /*
+        var test = {
+          name: 'testName123',
+          title: 'testTitleasdasdasdasd'
+        };
+
+        db.insertOne(Test, test, function(flag) {
+          console.log(test);
+          if (flag) {
+            console.log('Added ' + test);
+            res.redirect('/forum/discussion/' + username);
+          }
+          else {
+            console.log('test' + flag);
+          }
+        });
+        */
       }
       else {
         res.render('error', details);
       }
+
+
     });
   },
 
@@ -113,10 +140,10 @@ const forumDiscussionController = {
               console.log(username + ' Liked ' + postID);
             }
           });
-          db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
+          db.findOne(Post, {postID: postID}, '', function(result) {
             if (result != null) {
               var newRating = result.rating + 2;
-              db.updateOne(ForumDiscussion, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
+              db.updateOne(Post, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
                 if (flag) {
                   console.log(postID + ' new rating: ' + newRating);
                 }
@@ -134,10 +161,10 @@ const forumDiscussionController = {
               console.log(username + ' Liked ' + postID);
             }
           });
-          db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
+          db.findOne(Post, {postID: postID}, '', function(result) {
             if (result != null) {
               var newRating = result.rating + 1;
-              db.updateOne(ForumDiscussion, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
+              db.updateOne(Post, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
                 if (flag) {
                   console.log(postID + ' new rating: ' + newRating);
                 }
@@ -155,10 +182,10 @@ const forumDiscussionController = {
               console.log(postID + ' removed from ' + username +'s likedPosts');
             }
           });
-          db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
+          db.findOne(Post, {postID: postID}, '', function(result) {
             if (result != null) {
               var newRating = result.rating - 1;
-              db.updateOne(ForumDiscussion, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
+              db.updateOne(Post, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
                 if (flag) {
                   console.log(postID + ' new rating: ' + newRating);
                 }
@@ -196,10 +223,10 @@ const forumDiscussionController = {
               console.log(username + ' Disliked ' + postID);
             }
           });
-          db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
+          db.findOne(Post, {postID: postID}, '', function(result) {
             if (result != null) {
               var newRating = result.rating - 2;
-              db.updateOne(ForumDiscussion, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
+              db.updateOne(Post, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
                 if (flag) {
                   console.log(postID + ' new rating: ' + newRating);
                 }
@@ -217,10 +244,10 @@ const forumDiscussionController = {
               console.log(username + ' Disliked ' + postID);
             }
           });
-          db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
+          db.findOne(Post, {postID: postID}, '', function(result) {
             if (result != null) {
               var newRating = result.rating - 1;
-              db.updateOne(ForumDiscussion, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
+              db.updateOne(Post, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
                 if (flag) {
                   console.log(postID + ' new rating: ' + newRating);
                 }
@@ -238,10 +265,10 @@ const forumDiscussionController = {
               console.log(postID + ' removed from ' + username +'s dislikedPosts');
             }
           });
-          db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
+          db.findOne(Post, {postID: postID}, '', function(result) {
             if (result != null) {
               var newRating = result.rating + 1;
-              db.updateOne(ForumDiscussion, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
+              db.updateOne(Post, {postID: postID}, { $set: {rating: newRating} }, function (flag) {
                 if (flag) {
                   console.log(postID + ' new rating: ' + newRating);
                 }
@@ -261,7 +288,7 @@ const forumDiscussionController = {
 
   getRating: function(req, res) {
     var postID = req.query.postID;
-    db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
+    db.findOne(Post, {postID: postID}, '', function(result) {
       res.send(result);
     });
   }
