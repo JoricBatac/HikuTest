@@ -105,6 +105,7 @@ const battleController = {
           comments: [],
           rating: 0,
         };
+        console.log(challenge);
         db.insertOne(ForumBattle, challenge, function(flag) {
           if (flag) {
             console.log('Added ' + challenge.title);
