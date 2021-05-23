@@ -56,6 +56,7 @@ app.post('/forum/:username', forumController.postDiscussion);
 app.post('/likePost', forumController.postLike);
 app.post('/dislikePost', forumController.postDislike);
 app.get('/updateForumRating', forumController.getRating);
+app.post('/postChallenge', forumController.postChallenge);
 
 app.get('/forum/post/:postID', forumpostController.getForumPost);
 app.post('/forum/post/:postID', forumpostController.postComment);

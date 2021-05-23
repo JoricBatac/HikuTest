@@ -24,7 +24,7 @@ var commentSchema = new mongoose.Schema({
     }
 });
 
-var forumDiscussionSchema = new mongoose.Schema({
+var forumBattleSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -55,4 +55,4 @@ var forumDiscussionSchema = new mongoose.Schema({
     comments: [commentSchema]
 });
 
-module.exports = mongoose.model('ForumDiscussion', forumDiscussionSchema);
+module.exports = mongoose.model('ForumBattle', forumBattleSchema);

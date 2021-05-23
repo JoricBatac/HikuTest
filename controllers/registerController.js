@@ -67,18 +67,22 @@ const registerController = {
           currC: 0,
           currAtt: 0,
           currDef: 0,
-          currHp: 0
+          currHp: 0,
+          likedPosts: [],
+          dislikedPosts: [],
+          discussionPosts: [],
+          battlePosts: []
         }
         db.insertOne(User, user, function(flag) {
           console.log(flag);
           if (flag) {
-            res.redirect('/login'); 
+            res.redirect('/login');
           }
         });
       });
     }
   },
-  
+
   getCheckUsername: function(req, res) {
     var username = req.query.username;
 

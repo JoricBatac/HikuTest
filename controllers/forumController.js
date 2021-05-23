@@ -6,6 +6,8 @@ const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
 const ForumDiscussion = require('../models/ForumDiscussionModel.js');
+//const ForumBattle = require('../models/ForumBattleModel.js');
+//const ForumPosts = require('../models/ForumModel.js');
 
 const forumController = {
 
@@ -23,12 +25,35 @@ const forumController = {
     else {
       details.flag = false;
     }
-
     db.findOne(User, query, projection, function(result) {
       if (result != null) {
         details.username = result.username;
         details.profpic = result.profpic;
 
+
+        User.find({},'discussionPosts').exec((err, result) => {
+          if (err) {
+            console.log('discussion posts load error');
+          }
+          else {
+            result = JSON.stringify(result);
+            result = JSON.parse(result);
+            /*
+            for (var i = 0; i < result.length; i++) {
+              var date = new Date(result[i].postedAt);
+              result[i].postedAt = moment(date).fromNow();
+            }*/
+
+
+            details.posts = result.discussionPosts;
+            console.log(result[0].discussionPosts[0]);
+            //details.posts.reverse();
+            res.render('forum', details);
+
+          }
+        });
+
+        /*
         ForumDiscussion.find({},).exec((err, result) => {
           if (err) {
             console.log('discussion posts load error');
@@ -37,18 +62,37 @@ const forumController = {
             result = JSON.stringify(result);
             result = JSON.parse(result);
             for (var i = 0; i < result.length; i++) {
-              /*
-              var date = new Date(result[i].postedAt);
-              result[i].postedAt = date.toLocaleString();
-              */
               var date = new Date(result[i].postedAt);
               result[i].postedAt = moment(date).fromNow();
             }
             details.posts = result;
+            console.log(result);
             details.posts.reverse();
+            res.render('forum', details);
+
+          }
+        });*/
+
+        /*
+        ForumBattle.find({},).exec((err, result) => {
+
+          if (err) {
+            console.log('battle posts load error');
+          }
+          else {
+            result = JSON.stringify(result);
+            result = JSON.parse(result);
+            for (var i = 0; i < result.length; i++) {
+              var date = new Date(result[i].postedAt);
+              result[i].postedAt = moment(date).fromNow();
+            }
+            details.posts.push(result);
+            details.posts.reverse();
+            console.log(result);
             res.render('forum', details);
           }
         });
+        */
       }
       else {
         res.render('error', details);
@@ -59,6 +103,7 @@ const forumController = {
   postDiscussion: function(req, res) {
     var username = req.session.username;
     var details = {};
+
     db.findOne(User, {username: username}, '', function(result) {
       if (result != null) {
         details.profpic = result.profpic;
@@ -78,10 +123,17 @@ const forumController = {
           comments: [],
           rating: 0,
         };
+        /*
         db.insertOne(ForumDiscussion, discussion, function(flag) {
           if (flag) {
             console.log('Added ' + discussion.title);
             res.redirect('/forum/' + username);
+          }
+        });
+        */
+        db.updateOne(User, {username: username}, { $push: {discussionPosts: discussion} }, function (flag) {
+          if (flag) {
+            console.log('Added ' + discussion.title);
           }
         });
       }
@@ -262,6 +314,42 @@ const forumController = {
     db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
       res.send(result);
     });
+  },
+
+  postChallenge: function(req, res) {
+    var username = req.session.username;
+
+    var details = {};
+    db.findOne(User, {username: username}, '', function(result) {
+      if (result != null) {
+        var profpic = result.profpic;
+        var title = req.body.title;
+        if (title == '')
+          title = 'No Title';
+
+        var content = 'test content';
+
+
+        var challenge = {
+          username: username,
+          profpic: profpic,
+          title: title,
+          content: content,
+          comments: [],
+          rating: 0,
+        };
+        db.insertOne(ForumBattle, challenge, function(flag) {
+          if (flag) {
+            console.log('Added ' + challenge.title);
+            res.redirect('/forum/' + username);
+          }
+        });
+      }
+      else {
+        res.render('error', details);
+      }
+    });
+
   }
 }
 

@@ -73,7 +73,7 @@ const battleController = {
 
 
         details.battles = battles;
-        console.log(details);
+        //console.log(details);
 
         res.render('battle', details);
       }
