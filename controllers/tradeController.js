@@ -53,20 +53,12 @@ const tradeController = {
     var itemName = req.body.itemName;
     var itemType = req.body.itemType;
     var itemIndex = req.body.itemIndex;
-
-    var offer = {
-      username : "JoricTest",
-      item : itemName,
-      offerName : "Brines Pogi",
-      offerIndex : 2,
-      offerType : 0
-    }
     var trade = {
           username: username,
           itemName: itemName,
           itemType: itemType,
           itemIndex: itemIndex,
-          tradeOffers:[offer]
+          tradeOffers:[]
         }
 
     if(itemType==0)
@@ -235,6 +227,7 @@ const tradeController = {
       db.updateOne(User, {username: username}, { $push: {charOwned: itemIndex} }, function (flag) {
         if (flag) {
           console.log('selfpushed ' + itemIndex);
+          res.redirect('/trade/' + username);
         }
         else{
           console.log(flag);
@@ -243,7 +236,8 @@ const tradeController = {
     if(itemType==1)
       db.updateOne(User, {username: username}, { $push: {weapOwned: itemIndex} }, function (flag) {
         if (flag) {
-          console.log('selfpushed ' + itemIndex);         
+          console.log('selfpushed ' + itemIndex); 
+          res.redirect('/trade/' + username);        
         }
         else{
           console.log(flag);
@@ -252,7 +246,8 @@ const tradeController = {
     if(itemType==2)
       db.updateOne(User, {username: username}, { $push: {shieldOwned: itemIndex} }, function (flag) {
         if (flag) {
-          console.log('selfpushed ' + itemIndex);          
+          console.log('selfpushed ' + itemIndex);  
+          res.redirect('/trade/' + username);        
         }
         else{
           console.log(flag);
@@ -262,6 +257,7 @@ const tradeController = {
       db.updateOne(User, {username: username}, { $push: {armOwned: itemIndex} }, function (flag) {
         if (flag) {
           console.log('selfpushed ' + itemIndex);
+          res.redirect('/trade/' + username);
         }
         else{
           console.log(flag);
