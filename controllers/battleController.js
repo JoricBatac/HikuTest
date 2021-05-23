@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
-const ForumBattle = require('../models/ForumBattleModel');
+const ForumBattle = require('../models/ForumBattleModel.js');
 
 const battleController = {
 
