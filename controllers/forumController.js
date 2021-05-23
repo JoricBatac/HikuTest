@@ -38,16 +38,20 @@ const forumController = {
           else {
             result = JSON.stringify(result);
             result = JSON.parse(result);
-            /*
+            details.posts = [];
             for (var i = 0; i < result.length; i++) {
-              var date = new Date(result[i].postedAt);
-              result[i].postedAt = moment(date).fromNow();
-            }*/
-
-
+              for (var j = 0; j < result[i].discussionPosts.length; j++) {
+                var date = new Date(result[i].discussionPosts[j].postedAt);
+                result[i].discussionPosts[j].postedAt = moment(date).fromNow();
+                details.posts.push(result[i].discussionPosts[j]);
+              }
+            }
+            /*
             details.posts = result.discussionPosts;
-            console.log(result[0].discussionPosts[0]);
-            //details.posts.reverse();
+            console.log(result[0].discussionPosts[1]);
+            */
+            console.log(details.posts);
+            details.posts.reverse();
             res.render('forum', details);
 
           }

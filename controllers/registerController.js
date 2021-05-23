@@ -72,9 +72,9 @@ const registerController = {
           dislikedPosts: [],
           discussionPosts: [],
           battlePosts: []
-        }
+        };
         db.insertOne(User, user, function(flag) {
-          console.log(flag);
+          console.log(flag + 'WHYHAYSHDYHUASHD');
           if (flag) {
             res.redirect('/login');
           }
