@@ -3,7 +3,8 @@ const moment = require('moment');
 const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
-const ForumDiscussion = require('../models/ForumDiscussionModel.js');
+//const ForumDiscussion = require('../models/ForumDiscussionModel.js');
+const Post = require('../models/TestModel.js');
 
 const forumpostController = {
 
@@ -23,7 +24,7 @@ const forumpostController = {
       details.flag = false;
     }
 
-    db.findOne(ForumDiscussion, query, projection, function(result) {
+    db.findOne(Post, query, projection, function(result) {
       if (result != null) {
         details.username = result.username;
         details.profpic = result.profpic;
@@ -35,7 +36,7 @@ const forumpostController = {
         var date = new Date(result.postedAt);
         details.postedAt = moment(date).fromNow();
 
-        ForumDiscussion.findOne({postID: details.postID}, 'comments').exec((err, result) => {
+        Post.findOne({postID: details.postID}, 'comments').exec((err, result) => {
           if (err) {
             console.log('comments load error');
           }
@@ -78,7 +79,7 @@ const forumpostController = {
           comment: content,
           rating: 0
         };
-        db.updateOne(ForumDiscussion, {postID: postID}, { $push: {comments: comment} }, function (flag) {
+        db.updateOne(Post, {postID: postID}, { $push: {comments: comment} }, function (flag) {
           if (flag) {
             res.redirect('/forum/post/' + postID);
           }
@@ -185,7 +186,7 @@ const forumpostController = {
 
   getRating: function(req, res) {
     var postID = req.query.postID;
-    db.findOne(ForumDiscussion, {postID: postID}, '', function(result) {
+    db.findOne(Post, {postID: postID}, '', function(result) {
       res.send(result);
     });
   }

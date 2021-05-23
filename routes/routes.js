@@ -12,15 +12,15 @@ const homeController = require('../controllers/homeController.js');
 
 const accountController = require('../controllers/accountController.js');
 
-const exploreController = require('../controllers/exploreController.js');
+//const exploreController = require('../controllers/exploreController.js');
 
 const forumDiscussionController = require('../controllers/forumDiscussionController.js');
 
-const forumTradeController = require('../controllers/forumTradeController.js');
+//const forumTradeController = require('../controllers/forumTradeController.js');
 
-const forumExploreController = require('../controllers/forumExploreController.js');
+//const forumExploreController = require('../controllers/forumExploreController.js');
 
-const forumBattleController = require('../controllers/forumBattleController.js');
+//const forumBattleController = require('../controllers/forumBattleController.js');
 
 const forumpostController = require('../controllers/forumpostController.js');
 
@@ -50,7 +50,7 @@ app.get('/home/:username', homeController.getHome);
 
 app.get('/account/:username', accountController.getAccount);
 
-app.get('/explore/:username', exploreController.getExplore);
+//app.get('/explore/:username', exploreController.getExplore);
 
 app.get('/trade/:username', tradeController.getTrade);
 app.post('/postTrade', tradeController.postTrade);
@@ -60,16 +60,16 @@ app.post('/removeTrade', tradeController.removeTrade);
 
 app.get('/forum/discussion/:username', forumDiscussionController.getDiscussion);
 app.post('/forum/discussion/:username', forumDiscussionController.postDiscussion);
-app.post('/likePost', forumDiscussionController.postLike);
-app.post('/dislikePost', forumDiscussionController.postDislike);
-app.get('/updateForumRating', forumDiscussionController.getRating);
+//app.post('/likePost', forumDiscussionController.postLike);
+//app.post('/dislikePost', forumDiscussionController.postDislike);
+//app.get('/updateForumRating', forumDiscussionController.getRating);
 
-app.get('/forum/battle/:username', forumBattleController.getForumBattle);
-app.get('/forum/trade/:username', forumTradeController.getForumTrade);
-app.get('/forum/explore/:username', forumExploreController.getForumExplore);
+//app.get('/forum/battle/:username', forumBattleController.getForumBattle);
+//app.get('/forum/trade/:username', forumTradeController.getForumTrade);
+//app.get('/forum/explore/:username', forumExploreController.getForumExplore);
 
 app.get('/battle/:username', battleController.getBattle);
-app.post('/postChallenge', battleController.postChallenge);
+//app.post('/postChallenge', battleController.postChallenge);
 
 app.get('/forum/post/:postID', forumpostController.getForumPost);
 app.post('/forum/post/:postID', forumpostController.postComment);

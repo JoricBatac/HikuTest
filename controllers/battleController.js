@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
-const ForumBattle = require('../models/ForumBattleModel.js');
+//const ForumBattle = require('../models/ForumBattleModel.js');
 
 const battleController = {
 
@@ -82,7 +82,7 @@ const battleController = {
         res.render('error', details);
       }
     });
-  },
+  }/*,
 
   postChallenge: function(req, res) {
     var username = req.session.username;
@@ -118,7 +118,7 @@ const battleController = {
       }
     });
 
-  }
+  }*/
 };
 
 module.exports = battleController;
