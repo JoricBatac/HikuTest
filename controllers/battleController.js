@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
-const ForumBattle = require('../models/ForumBattleModel');
+const ForumBattle = require('../models/ForumBattleModel.js');
 
 const battleController = {
 
@@ -105,6 +105,7 @@ const battleController = {
           comments: [],
           rating: 0,
         };
+        console.log(challenge);
         db.insertOne(ForumBattle, challenge, function(flag) {
           if (flag) {
             console.log('Added ' + challenge.title);
