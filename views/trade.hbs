@@ -45,9 +45,6 @@
           var offerIndex = $(this).siblings('#formID').find('#offerI').val();
           var usernameOfferer = $(this).siblings('#formID').find('#userOffer').val();
 
-          //var itemIndex = {{{json itemIndex}}};
-          //var itemType = {{{json itemType}}};
-
           alert('Remember to be mindful of what you accept! You do not want to take an offer you do not want.');
           if($('#itemdisp').width() == 0){
             $('#itemdisp').css('opacity',1);
@@ -57,8 +54,6 @@
             $('#offerer').val(usernameOfferer);
             $('#offerType').val(offerType);
             $('#offerIndex').val(offerIndex);
-            $('#itemIndexMain').val(itemIndex);
-            $('#itemTypeMain').val(itemType);
           }
           else{
             $('#itemdisp').css('opacity',0);
@@ -71,15 +66,16 @@
       $('#acceptButton').click(function () {
 
           var username = {{{json username}}};
-          //var itemIndex = {{{json itemIndex}}};
-          //var itemType = {{{json itemType}}};
 
           var offerType = $('#offerType').val();
           var offerIndex = $('#offerIndex').val();
           var usernameOfferer = $('#offerer').val();
+          var itemIndex = $('#itemIndexMain').val();
+          var itemType = $('#itemTypeMain').val();
 
 
-          $.get('/acceptTrade', {username: username , usernameOfferer: usernameOfferer, itemType: itemType, itemIndex: itemIndex, offerType: offerType, offerIndex: offerIndex}, function (result) {
+
+          $.post('/acceptTrade', {username: username , usernameOfferer: usernameOfferer, itemType: itemType, itemIndex: itemIndex, offerType: offerType, offerIndex: offerIndex}, function (result) {
             console.log('Mission Accomplished');
         });
       });
@@ -139,11 +135,11 @@
         <div class="headertext" style="font-size: 20px; font-weight: bold" id="dispitem"></div>
         <div class="headertext" style="font-size: 20px; color:#8fbcbb; font-weight: bold">Offers</div>
         <div class="headertext" style="font-size: 20px;" id="offers"></div>
-        <input id="itemTypeMain" name="itemType">
-        <input id="itemIndexMain" name="itemIndex">
-        <input id="offerer" name="offerer">
-        <input id="offerType" name="offerType">
-        <input id="offerIndex" name="offerIndex">
+        <input style="display:none" id="itemTypeMain" name="itemType" value='{{itemType}}'>
+        <input style="display:none" id="itemIndexMain" name="itemIndex" value='{{itemIndex}}'>
+        <input style="display:none" id="offerer" name="offerer">
+        <input style="display:none" id="offerType" name="offerType">
+        <input style="display:none" id="offerIndex" name="offerIndex">
 
         <button class="bottombutton" id="acceptButton">Accept</button>
       </div>

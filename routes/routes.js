@@ -49,7 +49,7 @@ app.get('/explore/:username', exploreController.getExplore);
 app.get('/trade/:username', tradeController.getTrade);
 app.post('/postTrade', tradeController.postTrade);
 app.get('/getCheckTrade', tradeController.getCheckTrade);
-app.get('/acceptTrade', tradeController.acceptTrade);
+app.post('/acceptTrade', tradeController.acceptTrade);
 
 app.get('/forum/:username', forumController.getForum);
 app.post('/forum/:username', forumController.postDiscussion);

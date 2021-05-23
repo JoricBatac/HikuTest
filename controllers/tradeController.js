@@ -132,46 +132,82 @@ const tradeController = {
               console.log(':)');
             }
         });
-        if(itemType==0)
-          db.updateOne(User, {username: username}, { $push: {charOwned: itemIndex} }, function (flag) {
+        if(offerType==0)
+          db.updateOne(User, {username: username}, { $push: {charOwned: offerIndex} }, function (flag) {
               if (flag) {
-                console.log('pushed ' + itemIndex);
-                res.redirect('/trade/' + username);
+                console.log('pushed ' + offerIndex);
               }
               else{
-                console.log('char '+flag);
+                console.log(flag);
+              }
+            });
+        if(offerType==1)
+          db.updateOne(User, {username: username}, { $push: {weapOwned: offerIndex} }, function (flag) {
+              if (flag) {
+                console.log('pushed ' + offerIndex);
+              }
+              else{
+                console.log(flag);
+              }
+            });
+        if(offerType==2)
+          db.updateOne(User, {username: username}, { $push: {shieldOwned: offerIndex} }, function (flag) {
+              if (flag) {
+                console.log('pushed ' + offerIndex);
+              }
+              else{
+                console.log(flag);
+              }
+            });
+        if(offerType==3)
+          db.updateOne(User, {username: username}, { $push: {armOwned: offerIndex} }, function (flag) {
+              if (flag) {
+                console.log('pushed ' + offerIndex);
+              }
+              else{
+                console.log(flag);
+              }
+            });
+
+        if(itemType==0)
+          db.updateOne(User, {username: usernameOfferer}, { $push: {charOwned: itemIndex} }, function (flag) {
+              if (flag) {
+                console.log('offerer pushed ' + offerIndex);
+              }
+              else{
+                console.log(+flag);
               }
             });
         if(itemType==1)
-          db.updateOne(User, {username: username}, { $push: {weapOwned: itemIndex} }, function (flag) {
+          db.updateOne(User, {username: usernameOfferer}, { $push: {weapOwned: itemIndex} }, function (flag) {
               if (flag) {
-                console.log('pushed ' + itemIndex);
-                res.redirect('/trade/' + username);
+                console.log('offerer pushed ' + offerIndex);
               }
               else{
                 console.log(flag);
               }
             });
         if(itemType==2)
-          db.updateOne(User, {username: username}, { $push: {shieldOwned: itemIndex} }, function (flag) {
+          db.updateOne(User, {username: usernameOfferer}, { $push: {shieldOwned: itemIndex} }, function (flag) {
               if (flag) {
-                console.log('pushed ' + itemIndex);
-                res.redirect('/trade/' + username);
+                console.log('offerer pushed ' + offerIndex);
               }
               else{
                 console.log(flag);
               }
             });
         if(itemType==3)
-          db.updateOne(User, {username: username}, { $push: {armOwned: itemIndex} }, function (flag) {
+          db.updateOne(User, {username: usernameOfferer}, { $push: {armOwned: itemIndex} }, function (flag) {
               if (flag) {
-                console.log('pushed ' + itemIndex);
-                res.redirect('/trade/' + username);
+                console.log('offerer pushed ' + offerIndex);
+
               }
               else{
                 console.log(flag);
               }
             });
+          res.redirect('/trade/' + username);
+
   },
   getCheckTrade: function(req, res) {
     var username = req.query.username;
