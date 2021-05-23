@@ -11,13 +11,6 @@
     <a href="/home/{{name}}"><div class="navbutton">
       <p><b>Home</b></p>
     </div></a>
-    <a href="/forum/discussion/{{name}}"><div class="navbutton">
-      <p><b>Forums Discussions</b></p>
-    </div></a>
-
-    <a href="/forum/battle/{{name}}"><div class="navbutton">
-      <p><b>Forums Battles</b></p>
-    </div></a>
 
     <a href="/explore/{{name}}"><div class="navbutton">
       <p><b>Explore</b></p>
@@ -28,6 +21,16 @@
     <a href="/trade/{{name}}"><div class="navbutton">
       <p><b>Trade</b></p>
     </div></a>
+
+    <div class="dropdown">
+      <div class="navbutton" style="cursor: context-menu;"><p><b>Forum</b></p></div>
+      <div class="dropdown-content">
+        <a href="/forum/discussion/{{name}}">Discussion Forum</a>
+        <a href="/forum/battle/{{name}}">Battle Forum</a>
+        <a href="/forum/trade/{{name}}">Trade Forum</a>
+      </div>
+    </div>
+
     <a href="/account/{{name}}"><div class="navbutton">
       <p><b>Account</b></p>
     </div></a>
