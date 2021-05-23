@@ -16,6 +16,10 @@ const exploreController = require('../controllers/exploreController.js');
 
 const forumDiscussionController = require('../controllers/forumDiscussionController.js');
 
+const forumTradeController = require('../controllers/forumTradeController.js');
+
+const forumExploreController = require('../controllers/forumExploreController.js');
+
 const forumBattleController = require('../controllers/forumBattleController.js');
 
 const forumpostController = require('../controllers/forumpostController.js');
@@ -61,6 +65,8 @@ app.post('/dislikePost', forumDiscussionController.postDislike);
 app.get('/updateForumRating', forumDiscussionController.getRating);
 
 app.get('/forum/battle/:username', forumBattleController.getForumBattle);
+app.get('/forum/trade/:username', forumTradeController.getForumTrade);
+app.get('/forum/explore/:username', forumExploreController.getForumExplore);
 
 app.get('/battle/:username', battleController.getBattle);
 app.post('/postChallenge', battleController.postChallenge);

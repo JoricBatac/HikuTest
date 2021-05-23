@@ -6,11 +6,11 @@ const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
 //const ForumDiscussion = require('../models/ForumDiscussionModel.js');
-const ForumBattle = require('../models/ForumBattleModel.js');
+const ForumTrade = require('../models/ForumTradeModel.js');
 
-const forumBattleController = {
+const forumTradeController = {
 
-  getForumBattle: function(req, res) {
+  getForumTrade: function(req, res) {
     var query = {username: req.params.username};
 
     var projection = 'username profpic';
@@ -30,10 +30,10 @@ const forumBattleController = {
         details.username = result.username;
         details.profpic = result.profpic;
 
-        ForumBattle.find({},).exec((err, result) => {
+        ForumTrade.find({},).exec((err, result) => {
 
           if (err) {
-            console.log('battle posts load error');
+            console.log('Trade posts load error');
           }
           else {
             result = JSON.stringify(result);
@@ -48,7 +48,7 @@ const forumBattleController = {
             }
             details.posts = result ;
             details.posts.reverse();
-            res.render('forumBattle', details);
+            res.render('forumTrade', details);
           }
         });
       }
@@ -59,4 +59,4 @@ const forumBattleController = {
   }
 }
 
-module.exports = forumBattleController;
+module.exports = forumTradeController;

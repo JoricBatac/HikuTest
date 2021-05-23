@@ -120,6 +120,13 @@
 	color: #eceff4;
 }
 
+#reqdiscuss {
+	background-color: #7AADBD;
+}
+#reqdiscuss:hover {
+	background-color: #A4E9FF;
+}
+
 #reqbattle {
 	background-color: #bf616a;
 }
