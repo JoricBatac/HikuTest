@@ -176,7 +176,7 @@ const tradeController = {
                 res.redirect('/trade/' + username);
               }
               else{
-                console.log(+flag);
+                console.log(flag);
               }
             });
         if(itemType==1)
@@ -209,7 +209,6 @@ const tradeController = {
                 console.log(flag);
               }
             });
-          res.redirect('/trade/' + username);
 
   },
   getCheckTrade: function(req, res) {
@@ -268,7 +267,6 @@ const tradeController = {
           console.log(flag);
         }
       });
-      res.redirect('/trade/' + username);    
   }
 }
 
