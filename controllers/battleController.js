@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const db = require('../models/db.js');
 
 const User = require('../models/UserModel.js');
+const ForumBattle = require('../models/ForumBattleModel');
 
 const battleController = {
 
@@ -81,6 +82,41 @@ const battleController = {
         res.render('error', details);
       }
     });
+  },
+
+  postChallenge: function(req, res) {
+    var username = req.session.username;
+    var details = {};
+    db.findOne(User, {username: username}, '', function(result) {
+      if (result != null) {
+        var profpic = result.profpic;
+        var title = req.body.title;
+        if (title == '')
+          title = 'No Title';
+
+        var content = 'test content';
+
+
+        var challenge = {
+          username: username,
+          profpic: profpic,
+          title: title,
+          content: content,
+          comments: [],
+          rating: 0,
+        };
+        db.insertOne(ForumBattle, challenge, function(flag) {
+          if (flag) {
+            console.log('Added ' + challenge.title);
+            res.redirect('/forum/battle/' + username);
+          }
+        });
+      }
+      else {
+        res.render('error', details);
+      }
+    });
+
   }
 };
 

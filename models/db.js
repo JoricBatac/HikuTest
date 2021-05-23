@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 // import schemas
 const User = require('./UserModel.js');
 const ForumDiscussion = require('./ForumDiscussionModel.js');
+const ForumBattle = require('./ForumBattleModel.js');
 
 //const dotenv = require('dotenv');
 //dotenv.config();

@@ -67,14 +67,10 @@ const registerController = {
           currC: 0,
           currAtt: 0,
           currDef: 0,
-          currHp: 0,
-          likedPosts: [],
-          dislikedPosts: [],
-          discussionPosts: [],
-          battlePosts: []
-        };
+          currHp: 0
+        }
         db.insertOne(User, user, function(flag) {
-          console.log(flag + 'WHYHAYSHDYHUASHD');
+          console.log(flag);
           if (flag) {
             res.redirect('/login');
           }
